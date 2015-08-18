@@ -10,63 +10,63 @@ Customer API is a simple microservice allowing consumers to view polls and vote 
 
 Attributes
 - `id` - Customer's ID
-- `created_at` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for when this object was created
-- `updated_at` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for last time this object was updated - *optional*
-- `group_id` - Customer's group (for Hunt Club members, groupe_id == 4)
+- `createdAt` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for when this object was created
+- `updatedAt` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for last time this object was updated
+- `groups` - Customer's group as array of strings (Hunt Club members, ["huntclub"])
 - `email` - Customer's Email Address
-- `first_name` - Customer's first name - *optional*
-- `last_name` - Customer's last name - *optional*
+- `firstname` - Customer's first name - *optional*
+- `lastname` - Customer's last name - *optional*
 - `gender` - Customer's gender (male or female) - *optional*
-- `birth_date` - Customer's birth_date - *optional*
-- `default_shipping_address_id` - Customer's default shipping address ID - *optional*
-- `default_billing_address_id` - Customer's default billing address ID - *optional*
-- `store_credit` - Customer's Store Credit (can't be updated from here)
+- `birthdate` - Customer's birth_date - *optional*
 - `currency` - Customer's setted Currency
+- `externalAccounts` - ExternalAccount object - *optional*
 
 Extra Attributes for Customer Details
 - `gender` - *optional*
-- `facebook_id` - Customer's facebook ID - *optional*
-- `google_id` - Customer's google ID - *optional*
-- `advisor_id` - Customer's Style Advisor ID - *optional*
 
 
-        
+
 ## Customer [/customers/{customer_id}]
 
 + Model (application/json)
 
     + Header
-    
+
     + Body
-    
+
             {
-                "id":                                       1,  
-                "group_id":                                 1, 
-                "created_at":                               "2015-01-07T13:57:00Z", 
-                "updated_at":                               "2015-01-10T09:11:53Z",
-                "email":                                    "michael@frankandoak.com", 
-                "first_name":                               "Michael", 
-                "last_name":                                "Eilers Smith", 
-                "gender":                                   "male", 
-                "birth_date":                                "03/17/1983", 
-                "store_credit":                             41.66, 
-                "facebook_id":                              4324325242, 
-                "google_id":                                7643322533243
+                "@type":                                   "Customer",
+                "id":                                      1,  
+                "group_id":                                1,
+                "createdAt":                               "2015-01-07T13:57:00Z",
+                "updatedAt":                               "2015-01-10T09:11:53Z",
+                "email":                                    "michael@frankandoak.com",
+                "firstname":                               "Michael",
+                "lastname":                                "Eilers Smith",
+                "gender":                                   "male",
+                "birthdate":                                "03/17/1983",
+                "externalAccounts" : [
+                    {
+                        "@type": "ExternalAccount"
+                        "provider": "facebook",
+                        "id": "4324325242"
+                    }
+                ]
             }
-            
-            
+
+
 + Parameters
-    + customer_id (required, number, `1`) ... Numeric `id` of the User to perform action with. 
+    + customer_id (required, number, `1`) ... Numeric `id` of the User to perform action with.
 
 ### Retrieve a Customer [GET]
-        
+
 + Request (application/json)
-    
+
     + Header
 
             If-Modified-Since: Fri, 23 Jan 2015 20:50:05 GMT
-            X-Session-Token: grg42gtwegsfr           
-            
+            X-Session-Token: grg42gtwegsfr
+
 
 + Response 200
 
@@ -93,26 +93,26 @@ Extra Attributes for Customer Details
     - `store_credit` - Customer's Store Credit - *optional, admin permission*
     - `facebook_id` - Customer's facebook ID - *optional*
     - `google_id` - Customer's google ID - *optional*
-    
+
     + Header
 
     + Body
 
-            { 
-                "email": "michael@frankandoak.com", 
-                "first_name": "Michael", 
-                "last_name": "Eilers Smith", 
-                "gender": "male", 
-                "birth_date": "03/17/1983", 
-                "facebook_id": 4324325242, 
+            {
+                "email": "michael@frankandoak.com",
+                "first_name": "Michael",
+                "last_name": "Eilers Smith",
+                "gender": "male",
+                "birth_date": "03/17/1983",
+                "facebook_id": 4324325242,
                 "google_id": 7643322533243
             }
-        
-        
+
+
 + Response 200
 
     [Customer][]
-    
+
 + Response 400 (application/json)
 
 + Response 500 (application/json)
@@ -131,51 +131,51 @@ Extra Attributes for Customer Details
 
 + Model (application/json)
 
-            
+
     + Body
 
             [
                 {
-                    "id": 1, 
-                    "created_at": "2015-01-07T13:57:00Z", 
-                    "updated_at": "2015-01-10T09:11:53Z", 
-                    "group_id": 4, 
-                    "email": "michael@frankandoak.com", 
-                    "first_name": "Michael", 
-                    "last_name": "Eilers Smith", 
-                    "gender": "male", 
-                    "birth_date": "03/17/1983", 
-                    "default_shipping_address_id":325413, 
+                    "id": 1,
+                    "created_at": "2015-01-07T13:57:00Z",
+                    "updated_at": "2015-01-10T09:11:53Z",
+                    "group_id": 4,
+                    "email": "michael@frankandoak.com",
+                    "first_name": "Michael",
+                    "last_name": "Eilers Smith",
+                    "gender": "male",
+                    "birth_date": "03/17/1983",
+                    "default_shipping_address_id":325413,
                     "default_billing_address_id": 270186,
                     "store_credit": 41.66
-                }, 
+                },
                 {
-                    "id": 2, 
-                    "created_at": "2015-01-07T13:57:00Z", 
-                    "updated_at": "2015-01-10T09:11:53Z", 
-                    "group_id": 1, 
-                    "email": "sean@frankandoak.com", 
-                    "first_name": "Sean", 
-                    "last_name": "Connery", 
-                    "gender": "male", 
-                    "birth_date": "03/17/1963", 
-                    "default_shipping_address_id":325413, 
+                    "id": 2,
+                    "created_at": "2015-01-07T13:57:00Z",
+                    "updated_at": "2015-01-10T09:11:53Z",
+                    "group_id": 1,
+                    "email": "sean@frankandoak.com",
+                    "first_name": "Sean",
+                    "last_name": "Connery",
+                    "gender": "male",
+                    "birth_date": "03/17/1963",
+                    "default_shipping_address_id":325413,
                     "default_billing_address_id": 270186,
                     "store_credit": 41.66
                 }
             ]
 
-    
+
 ### List all Customers [GET]
 
 + Request (application/json)
 
     + Headers
-    
+
             If-Modified-Since: Fri, 23 Jan 2015 20:50:05 GMT
-            X-Session-Token: grg42gtwegsfr    
-            
-            
+            X-Session-Token: grg42gtwegsfr
+
+
 + Response 200
 
     [Customers Collection][]
@@ -194,6 +194,7 @@ Extra Attributes for Customer Details
     Attributes
     - `group_id` - Customer's group - *optional*
     - `email` - Customer's Email Address
+    - `password` - Customer Password
     - `first_name` - Customer's first name - *optional*
     - `last_name` - Customer's last name - *optional*
     - `gender` - Customer's gender (male or female) - *optional*
@@ -203,37 +204,38 @@ Extra Attributes for Customer Details
 
 
     + Headers
-    
-            X-Session-Token: grg42gtwegsfr   
-            
+
+            X-Session-Token: grg42gtwegsfr
+
     + Body
-    
+
             {
-                "email": "michael@frankandoak.com", 
-                "first_name": "Michael", 
-                "last_name": "Eilers Smith", 
-                "gender": "male", 
-                "birth_date": "03/17/1983", 
-                "facebook_id": 4324325242, 
+                "email": "michael@frankandoak.com",
+                "first_name": "Michael",
+                "last_name": "Eilers Smith",
+                "gender": "male",
+                "birth_date": "03/17/1983",
+                "facebook_id": 4324325242,
                 "google_id": 7643322533243
             }
 
 + Response 201 (application/json)
 
         {
-            "id": 1, 
-            "created_at": "2015-01-07T13:57:00Z", 
-            "group_id": 1, 
-            "email": "michael@frankandoak.com", 
-            "first_name": "Michael", 
-            "last_name": "Eilers Smith", 
-            "gender": "male", 
-            "birth_date": "03/17/1983", 
-            "store_credit": 0,00, 
-            "facebook_id": 4324325242, 
+            "@type": "Customer",
+            "id": 1,
+            "created_at": "2015-01-07T13:57:00Z",
+            "group_id": 1,
+            "email": "michael@frankandoak.com",
+            "first_name": "Michael",
+            "last_name": "Eilers Smith",
+            "gender": "male",
+            "birth_date": "03/17/1983",
+            "store_credit": 0,00,
+            "facebook_id": 4324325242,
             "google_id": 7643322533243
         }
-        
+
 + Response 400 (application/json)
 
 + Response 500 (application/json)
@@ -270,9 +272,9 @@ A Post object has the following attributes:
 + Model (application/json)
 
     + Header
-    
+
     + Body
-    
+
             {
                 "id": 1,
                 "created_at": "2014-11-11T08:40:51.620Z",
@@ -300,7 +302,7 @@ A Post object has the following attributes:
                     }
                 ]
             }
-            
+
 ### View a Post's Detail [GET]
 
 + Response 200 (application/json)
@@ -348,7 +350,7 @@ A Post object has the following attributes:
     - `store_credit` - Customer's Store Credit - *optional, admin permission*
     - `facebook_id` - Customer's facebook ID - *optional*
     - `google_id` - Customer's google ID - *optional*
-    
+
     + Header
 
     + Body
@@ -381,21 +383,20 @@ A Post object has the following attributes:
                     "is_deleted": 1
                 ]
             }
-        
-        
+
+
 + Response 200
 
     [Post][]
-    
+
 + Response 400 (application/json)
 
-+ Response 500 (application/json)            
-            
-## Posts Collection [/customers/{cid}/posts{?page}{?is_deleted}]
++ Response 500 (application/json)
+
+## Posts Collection [/customers/{cid}/posts{?page}]
 
 + Parameters
     + page: 1 (optional, number) - The page of surveys to return
-    + is_deleted: 0 (optional, number) - Only show posts that weren't deleted by the user
 
 ### List All Posts [GET]
 
@@ -407,8 +408,15 @@ A Post object has the following attributes:
 
     + Body
 
-            [
+            {
+                "first": "/surveys",
+                "previous": "/surveys?page=2",
+                "next": "/surveys?page=4",
+                "last": "/surveys?page=498",
+                "@type":"Collection",
+                "members":[
                 {
+                    "@type":"Survey",
                     "id": 1,
                     "created_at": "2014-11-11T08:40:51.620Z",
                     "updated_at": "2014-11-11T08:40:51.620Z",
@@ -461,6 +469,7 @@ A Post object has the following attributes:
                     ]
                 }
             ]
+        }
 
 ### Create a Post [POST]
 
@@ -532,12 +541,12 @@ object containing a post.
 
 
 
-            
+
 ## Group Survey
 
 Resources related to customer surveys in the API.
 
-## Survey [/customers/{cid}/surveys/{survey_id}]
+## Survey [/surveys/{survey_id}]
 
 A Survey object has the following attributes:
 
@@ -547,11 +556,11 @@ A Survey object has the following attributes:
 - `title`
 - `subtitle`
 - `description`
-- `image_url` - *optional*
-- `gender_group` - { none, male, female } - *optional*
-- `age_group` - { none, 18-25, 26-39, 40+ } - *optional*
+- `image` - *optional*
+- `gender` - { none, male, female } - *optional*
+- `age` - { none, 18-25, 26-39, 40+ } - *optional*
 - `customer_group_ids` - List of customer groups that have exclusive access to the survey, separated by a comma. If null, the survey is public. - *optional*
-- `expires_at` - *optional*
+- `expiresAt` - *optional*
 - `seen` - *optional*
 
 + Parameters
@@ -569,9 +578,9 @@ A Survey object has the following attributes:
             "image_url": "/surveys/1.jpg"
         }
 
-            
-            
-## Surveys Collection [/customers/{cid}/surveys{?page}]
+
+
+## Surveys Collection [/surveys{?page}]
 
 + Parameters
     + page: 1 (optional, number) - The page of surveys to return
@@ -630,7 +639,7 @@ object containing a survey.
                 "image_url": "/surveys/1.jpg"
             }
 
-## Question [/customers/{cid}/surveys/{sid}/questions/{question_id}]
+## Question [/surveys/{sid}/questions/{question_id}]
 
 A Question object has the following attributes:
 
@@ -696,13 +705,13 @@ A Question object has the following attributes:
 
 
 
-            
-            
-## Questions Collection [/customers/{cid}/surveys/{sid}/questions{?is_answered}{?page}]
+
+
+## Questions Collection [/surveys/{sid}/questions{?is_answered}{?page}{?group}]
 
 + Parameters
-    + is_answered: 1 (optional, number) - The answer status of questions to return
     + page: 1 (optional, number) - The page of questions to return
+    + group: huntclub (optional, string) - Groups for which questions shall be asked.
 
 ### List All Questions [GET]
 
@@ -710,12 +719,11 @@ A Question object has the following attributes:
 
     + Headers
 
-            Link: </questions?page=2>; rel="next"
-
     + Body
 
             [
                 {
+                    "@type": "Collection",
                     "id": 1,
                     "title": "What is your shirt size?",
                     "type": "singleChoice",
@@ -758,6 +766,8 @@ You may create your own question using this action. It takes a JSON
 object containing a question and a collection of answers in the
 form of choices.
 
+You need ROLE_ADMIN to access this resource.
+
 + title (string) - The question title
 + type (integer) - The question type (single choice, multiple, field)
 + choices (array[Choice]) - A collection of choices.
@@ -798,8 +808,8 @@ form of choices.
                     }
                 ]
             }
-            
-## Answer [/customers/{cid}/surveys/{sid}/questions/{qid}/answer]
+
+## Answer [/customers/{cid}/answers]
 
 + Parameters
     + cid: 1 (required, number) - ID of the Customer in form of an integer
@@ -813,7 +823,7 @@ object containing a collection of choiceIds or a text entry.
 + choices (array[string]) - A collection of choices.
 + entry (string) - A collection of choices.
 
-        
+
 + Response 201
 
     + Headers
