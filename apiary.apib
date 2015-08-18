@@ -1,0 +1,821 @@
+FORMAT: 1A
+HOST: https://api.frankandoak.com/
+
+# F&O API - Customer
+
+Customer API is a simple microservice allowing consumers to view polls and vote in them.
+
+
+## Group Customer
+
+Attributes
+- `id` - Customer's ID
+- `created_at` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for when this object was created
+- `updated_at` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for last time this object was updated - *optional*
+- `group_id` - Customer's group (for Hunt Club members, groupe_id == 4)
+- `email` - Customer's Email Address
+- `first_name` - Customer's first name - *optional*
+- `last_name` - Customer's last name - *optional*
+- `gender` - Customer's gender (male or female) - *optional*
+- `birth_date` - Customer's birth_date - *optional*
+- `default_shipping_address_id` - Customer's default shipping address ID - *optional*
+- `default_billing_address_id` - Customer's default billing address ID - *optional*
+- `store_credit` - Customer's Store Credit (can't be updated from here)
+- `currency` - Customer's setted Currency
+
+Extra Attributes for Customer Details
+- `gender` - *optional*
+- `facebook_id` - Customer's facebook ID - *optional*
+- `google_id` - Customer's google ID - *optional*
+- `advisor_id` - Customer's Style Advisor ID - *optional*
+
+
+        
+## Customer [/customers/{customer_id}]
+
++ Model (application/json)
+
+    + Header
+    
+    + Body
+    
+            {
+                "id":                                       1,  
+                "group_id":                                 1, 
+                "created_at":                               "2015-01-07T13:57:00Z", 
+                "updated_at":                               "2015-01-10T09:11:53Z",
+                "email":                                    "michael@frankandoak.com", 
+                "first_name":                               "Michael", 
+                "last_name":                                "Eilers Smith", 
+                "gender":                                   "male", 
+                "birth_date":                                "03/17/1983", 
+                "store_credit":                             41.66, 
+                "facebook_id":                              4324325242, 
+                "google_id":                                7643322533243
+            }
+            
+            
++ Parameters
+    + customer_id (required, number, `1`) ... Numeric `id` of the User to perform action with. 
+
+### Retrieve a Customer [GET]
+        
++ Request (application/json)
+    
+    + Header
+
+            If-Modified-Since: Fri, 23 Jan 2015 20:50:05 GMT
+            X-Session-Token: grg42gtwegsfr           
+            
+
++ Response 200
+
+    [Customer][]
+
++ Response 304
+
++ Response 400 (application/json)
+
++ Response 500 (application/json)
+
+### Update a Customer [PUT]
++ Request (application/json)
+
+    Attributes
+    - `group_id` - Customer's group - *optional*
+    - `email` - Customer's Email Address - *optional*
+    - `first_name` - Customer's first name - *optional*
+    - `last_name` - Customer's last name - *optional*
+    - `gender` - Customer's gender (male or female) - *optional*
+    - `birth_date` - Customer's birth_date - *optional*
+    - `default_shipping_address_id` - Customer's default shipping address ID - *optional*
+    - `default_billing_address_id` - Customer's default billing address ID - *optional*
+    - `store_credit` - Customer's Store Credit - *optional, admin permission*
+    - `facebook_id` - Customer's facebook ID - *optional*
+    - `google_id` - Customer's google ID - *optional*
+    
+    + Header
+
+    + Body
+
+            { 
+                "email": "michael@frankandoak.com", 
+                "first_name": "Michael", 
+                "last_name": "Eilers Smith", 
+                "gender": "male", 
+                "birth_date": "03/17/1983", 
+                "facebook_id": 4324325242, 
+                "google_id": 7643322533243
+            }
+        
+        
++ Response 200
+
+    [Customer][]
+    
++ Response 400 (application/json)
+
++ Response 500 (application/json)
+
+
+
+### Remove a Customer [DELETE]
++ Response 204
+
++ Response 400 (application/json)
+
++ Response 500 (application/json)
+
+
+## Customers Collection [/customers]
+
++ Model (application/json)
+
+            
+    + Body
+
+            [
+                {
+                    "id": 1, 
+                    "created_at": "2015-01-07T13:57:00Z", 
+                    "updated_at": "2015-01-10T09:11:53Z", 
+                    "group_id": 4, 
+                    "email": "michael@frankandoak.com", 
+                    "first_name": "Michael", 
+                    "last_name": "Eilers Smith", 
+                    "gender": "male", 
+                    "birth_date": "03/17/1983", 
+                    "default_shipping_address_id":325413, 
+                    "default_billing_address_id": 270186,
+                    "store_credit": 41.66
+                }, 
+                {
+                    "id": 2, 
+                    "created_at": "2015-01-07T13:57:00Z", 
+                    "updated_at": "2015-01-10T09:11:53Z", 
+                    "group_id": 1, 
+                    "email": "sean@frankandoak.com", 
+                    "first_name": "Sean", 
+                    "last_name": "Connery", 
+                    "gender": "male", 
+                    "birth_date": "03/17/1963", 
+                    "default_shipping_address_id":325413, 
+                    "default_billing_address_id": 270186,
+                    "store_credit": 41.66
+                }
+            ]
+
+    
+### List all Customers [GET]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Modified-Since: Fri, 23 Jan 2015 20:50:05 GMT
+            X-Session-Token: grg42gtwegsfr    
+            
+            
++ Response 200
+
+    [Customers Collection][]
+
++ Response 304
+
++ Response 400 (application/json)
+
++ Response 500 (application/json)
+
+
+### Create a Customer [POST]
+
++ Request (application/json)
+
+    Attributes
+    - `group_id` - Customer's group - *optional*
+    - `email` - Customer's Email Address
+    - `first_name` - Customer's first name - *optional*
+    - `last_name` - Customer's last name - *optional*
+    - `gender` - Customer's gender (male or female) - *optional*
+    - `birth_date` - Customer's birth_date - *optional*
+    - `facebook_id` - Customer's facebook ID - *optional*
+    - `google_id` - Customer's google ID - *optional*
+
+
+    + Headers
+    
+            X-Session-Token: grg42gtwegsfr   
+            
+    + Body
+    
+            {
+                "email": "michael@frankandoak.com", 
+                "first_name": "Michael", 
+                "last_name": "Eilers Smith", 
+                "gender": "male", 
+                "birth_date": "03/17/1983", 
+                "facebook_id": 4324325242, 
+                "google_id": 7643322533243
+            }
+
++ Response 201 (application/json)
+
+        {
+            "id": 1, 
+            "created_at": "2015-01-07T13:57:00Z", 
+            "group_id": 1, 
+            "email": "michael@frankandoak.com", 
+            "first_name": "Michael", 
+            "last_name": "Eilers Smith", 
+            "gender": "male", 
+            "birth_date": "03/17/1983", 
+            "store_credit": 0,00, 
+            "facebook_id": 4324325242, 
+            "google_id": 7643322533243
+        }
+        
++ Response 400 (application/json)
+
++ Response 500 (application/json)
+
+
+
+
+
+## Group Post
+
+Resources related to customer posts in the API.
+
+## Post [/customers/{cid}/posts/{post_id}]
+
+A Post object has the following attributes:
+
+- `id`
+- `created_at` - An ISO8601 date when the question was created.
+- `updated_at` - An ISO8601 date when the question was updated.
+- `published_at` - An ISO8601 date when the question was published.
+- `type` - { none, transaction, promotion, styleAdvice, content }
+- `title`
+- `message`
+- `is_deleted` - Has the user deleted the post
+- `deep_link` - *optional*
+- `web_url` - *optional*
+- `youtube_url` - *optional*
+- `vimeo_url` - *optional*
+
++ Parameters
+    + cid: 1 (required, number) - ID of the Customer in form of an integer
+    + post_id: 1 (required, number) - ID of the Post in form of an integer
+
++ Model (application/json)
+
+    + Header
+    
+    + Body
+    
+            {
+                "id": 1,
+                "created_at": "2014-11-11T08:40:51.620Z",
+                "updated_at": "2014-11-11T08:40:51.620Z",
+                "published_at": "2014-11-11T08:40:51.620Z",
+                "type": "styleAdvice",
+                "title": "Style Watch",
+                "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
+                "images": [
+                    {
+                        "id": 1,
+                        "created_at": "2014-11-11T08:40:51.620Z",
+                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "title": "Short in the back",
+                        "comment": "I really like how there is no hair on his neck."
+                        "image_url": "customers/1//posts/1/images/1/short.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "created_at": "2014-11-11T08:40:51.620Z",
+                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "title": "Fuzzy on top",
+                        "comment": "I wonder what shampoo he uses."
+                        "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                    }
+                ]
+            }
+            
+### View a Post's Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "created_at": "2014-11-11T08:40:51.620Z",
+            "updated_at": "2014-11-11T08:40:51.620Z",
+            "published_at": "2014-11-11T08:40:51.620Z",
+            "type": "styleAdvice",
+            "title": "Style Watch",
+            "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
+            "images": [
+                {
+                    "id": 1,
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "updated_at": "2014-11-11T08:40:51.620Z",
+                    "title": "Short in the back",
+                    "comment": "I really like how there is no hair on his neck."
+                    "image_url": "customers/1//posts/1/images/1/short.jpg"
+                },
+                {
+                    "id": 2,
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "updated_at": "2014-11-11T08:40:51.620Z",
+                    "title": "Fuzzy on top",
+                    "comment": "I wonder what shampoo he uses."
+                    "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                }
+            ]
+        }
+
+### Update a Post [PUT]
++ Request (application/json)
+
+    Attributes
+    - `group_id` - Customer's group - *optional*
+    - `email` - Customer's Email Address - *optional*
+    - `first_name` - Customer's first name - *optional*
+    - `last_name` - Customer's last name - *optional*
+    - `gender` - Customer's gender (male or female) - *optional*
+    - `birth_date` - Customer's birth_date - *optional*
+    - `default_shipping_address_id` - Customer's default shipping address ID - *optional*
+    - `default_billing_address_id` - Customer's default billing address ID - *optional*
+    - `store_credit` - Customer's Store Credit - *optional, admin permission*
+    - `facebook_id` - Customer's facebook ID - *optional*
+    - `google_id` - Customer's google ID - *optional*
+    
+    + Header
+
+    + Body
+
+            {
+                "id": 1,
+                "created_at": "2014-11-11T08:40:51.620Z",
+                "updated_at": "2014-11-11T08:40:51.620Z",
+                "published_at": "2014-11-11T08:40:51.620Z",
+                "type": "styleAdvice",
+                "title": "Style Watch",
+                "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
+                "images": [
+                    {
+                        "id": 1,
+                        "created_at": "2014-11-11T08:40:51.620Z",
+                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "title": "Short in the back",
+                        "comment": "I really like how there is no hair on his neck."
+                        "image_url": "customers/1//posts/1/images/1/short.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "created_at": "2014-11-11T08:40:51.620Z",
+                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "title": "Fuzzy on top",
+                        "comment": "I wonder what shampoo he uses."
+                        "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                    },
+                    "is_deleted": 1
+                ]
+            }
+        
+        
++ Response 200
+
+    [Post][]
+    
++ Response 400 (application/json)
+
++ Response 500 (application/json)            
+            
+## Posts Collection [/customers/{cid}/posts{?page}{?is_deleted}]
+
++ Parameters
+    + page: 1 (optional, number) - The page of surveys to return
+    + is_deleted: 0 (optional, number) - Only show posts that weren't deleted by the user
+
+### List All Posts [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Link: </surveys?page=2>; rel="next"
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "updated_at": "2014-11-11T08:40:51.620Z",
+                    "published_at": "2014-11-11T08:40:51.620Z",
+                    "type": "styleAdvice",
+                    "title": "Style Watch",
+                    "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
+                    "images": [
+                        {
+                            "id": 1,
+                            "created_at": "2014-11-11T08:40:51.620Z",
+                            "updated_at": "2014-11-11T08:40:51.620Z",
+                            "title": "Short in the back",
+                            "comment": "I really like how there is no hair on his neck."
+                            "image_url": "customers/1//posts/1/images/1/short.jpg"
+                        },
+                        {
+                            "id": 2,
+                            "created_at": "2014-11-11T08:40:51.620Z",
+                            "updated_at": "2014-11-11T08:40:51.620Z",
+                            "title": "Fuzzy on top",
+                            "comment": "I wonder what shampoo he uses."
+                            "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "updated_at": "2014-11-11T08:40:51.620Z",
+                    "published_at": "2014-11-11T08:40:51.620Z",
+                    "type": "promotion",
+                    "title": "The July collection is now live",
+                    "message": "This month's collection is inspired by Spain. Spain is a pretty awesome country",
+                    "products": [
+                        {
+                            "id": 1,
+                            "product_id": 4323444,
+                            "created_at": "2014-11-11T08:40:51.620Z",
+                            "updated_at": "2014-11-11T08:40:51.620Z",
+                            "comment": "What a great suit this is."
+                        },
+                        {
+                            "id": 2,
+                            "product_id": 5435434,
+                            "created_at": "2014-11-11T08:40:51.620Z",
+                            "updated_at": "2014-11-11T08:40:51.620Z",
+                            "comment": "I really see you in this sweater."
+                        }
+                    ]
+                }
+            ]
+
+### Create a Post [POST]
+
+You may create your own survey using this action. It takes a JSON
+object containing a post.
+
++ title (string) - The post title
++ ...
+
++ Request (application/json)
+
+        {
+            "published_at": "2014-11-11T08:40:51.620Z",
+            "type": "styleAdvice",
+            "title": "Style Watch",
+            "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
+            "images": [
+                {
+                    "id": 1,
+                    "title": "Short in the back",
+                    "comment": "I really like how there is no hair on his neck."
+                    "image_url": "customers/1//posts/1/images/1/short.jpg"
+                },
+                {
+                    "id": 2,
+                    "title": "Fuzzy on top",
+                    "comment": "I wonder what shampoo he uses."
+                    "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /surveys/2
+
+    + Body
+
+            {
+                "id": 1,
+                "created_at": "2014-11-11T08:40:51.620Z",
+                "published_at": "2014-11-11T08:40:51.620Z",
+                "type": "styleAdvice",
+                "title": "Style Watch",
+                "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
+                "images": [
+                    {
+                        "id": 1,
+                        "created_at": "2014-11-11T08:40:51.620Z",
+                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "title": "Short in the back",
+                        "comment": "I really like how there is no hair on his neck."
+                        "image_url": "customers/1//posts/1/images/1/short.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "created_at": "2014-11-11T08:40:51.620Z",
+                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "title": "Fuzzy on top",
+                        "comment": "I wonder what shampoo he uses."
+                        "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                    }
+                ]
+            }
+
+
+
+
+
+            
+## Group Survey
+
+Resources related to customer surveys in the API.
+
+## Survey [/customers/{cid}/surveys/{survey_id}]
+
+A Survey object has the following attributes:
+
+- `id`
+- `created_at` - An ISO8601 date when the question was created.
+- `updated_at` - An ISO8601 date when the question was updated.
+- `title`
+- `subtitle`
+- `description`
+- `image_url` - *optional*
+- `gender_group` - { none, male, female } - *optional*
+- `age_group` - { none, 18-25, 26-39, 40+ } - *optional*
+- `customer_group_ids` - List of customer groups that have exclusive access to the survey, separated by a comma. If null, the survey is public. - *optional*
+- `expires_at` - *optional*
+- `seen` - *optional*
+
++ Parameters
+    + cid: 1 (required, number) - ID of the Customer in form of an integer
+    + survey_id: 1 (required, number) - ID of the Survey in form of an integer
+
+### View a Survey's Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "title": "Sizing",
+            "created_at": "2014-11-11T08:40:51.620Z",
+            "image_url": "/surveys/1.jpg"
+        }
+
+            
+            
+## Surveys Collection [/customers/{cid}/surveys{?page}]
+
++ Parameters
+    + page: 1 (optional, number) - The page of surveys to return
+
+### List All Surveys [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Link: </posts?page=2>; rel="next"
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "title": "Sizing",
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "image_url": "/surveys/1.jpg"
+                },
+                {
+                    "id": 2,
+                    "title": "Budget",
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "image_url": "/surveys/2.jpg"
+                }
+            ]
+
+### Create a Survey [POST]
+
+You may create your own survey using this action. It takes a JSON
+object containing a survey.
+
++ title (string) - The survey title
++ ...
+
++ Request (application/json)
+
+        {
+            "title": "Basic Information"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /surveys/2
+
+    + Body
+
+            {
+                "id": 1,
+                "title": "Sizing",
+                "created_at": "2014-11-11T08:40:51.620Z",
+                "image_url": "/surveys/1.jpg"
+            }
+
+## Question [/customers/{cid}/surveys/{sid}/questions/{question_id}]
+
+A Question object has the following attributes:
+
+- `id`
+- `created_at` - An ISO8601 date when the question was created.
+- `updated_at` - An ISO8601 date when the question was updated.
+- `type` - { none, singleChoice, multipleChoice, field }
+- `title`
+- `subtitle`
+- `description`
+- `is_required`
+- `is_recurring` - *optional*
+- `recurrence_in_days` - *optional*
+- `gender_group` - { none, male, female } - *optional*
+- `age_group` - { none, 18-25, 26-39, 40+ } - *optional*
+- `image_url` - *optional*
+- `votes` - Number of times the choice was selected as an answer - *optional*
+- `choices` - An array of Choice objects. - *optional*
+
++ Parameters
+    + cid: 1 (required, number) - ID of the Customer in form of an integer
+    + question_id: 1 (required, number) - ID of the Question in form of an integer
+
+### View a Questions Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "title": "What is your shirt size?",
+            "type": "singleChoice",
+            "created_at": "2014-11-11T08:40:51.620Z",
+            "image_url": "/questions/1.jpg",
+            "choices": [
+                {
+                    "id": 1,
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "title": "XS",
+                    "votes": 2048
+                }, {
+                    "id": 2,
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "title": "S",
+                    "votes": 1024
+                }, {
+                    "id": 3,
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "title": "M",
+                    "votes": 512
+                }, {
+                    "id": 4,
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "title": "L",
+                    "votes": 256
+                }
+            ],
+            "answer": {
+                "id": 1,
+                "created_at": "2014-11-11T08:40:51.620Z",
+                "choices": [ 1 ]
+            }
+        }
+
+
+
+            
+            
+## Questions Collection [/customers/{cid}/surveys/{sid}/questions{?is_answered}{?page}]
+
++ Parameters
+    + is_answered: 1 (optional, number) - The answer status of questions to return
+    + page: 1 (optional, number) - The page of questions to return
+
+### List All Questions [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Link: </questions?page=2>; rel="next"
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "title": "What is your shirt size?",
+                    "type": "singleChoice",
+                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "image_url": "/questions/1.jpg",
+                    "choices": [
+                                {
+                                    "id": 1,
+                                    "created_at": "2014-11-11T08:40:51.620Z",
+                                    "title": "XS",
+                                    "votes": 2048
+                                }, {
+                                    "id": 2,
+                                    "created_at": "2014-11-11T08:40:51.620Z",
+                                    "title": "S",
+                                    "votes": 1024
+                                }, {
+                                    "id": 3,
+                                    "created_at": "2014-11-11T08:40:51.620Z",
+                                    "title": "M",
+                                    "votes": 512
+                                }, {
+                                    "id": 4,
+                                    "created_at": "2014-11-11T08:40:51.620Z",
+                                    "title": "L",
+                                    "votes": 256
+                                }
+                            ],
+                    "answer": {
+                        "id": 1,
+                        "created_at": "2014-11-11T08:40:51.620Z",
+                        "choices": [ 1 ]
+                    }
+                }
+            ]
+
+### Create a Question [POST]
+
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
++ title (string) - The question title
++ type (integer) - The question type (single choice, multiple, field)
++ choices (array[Choice]) - A collection of choices.
+
++ Request (application/json)
+
+        {
+            "title": "What is your pant fit?",
+            "type": "singleChoice",
+            "choices": [
+                {
+                    "title"
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /sites/1/customers/432432/surveys/1/questions/2
+
+    + Body
+
+            {
+                "question": "What is your pant fit?",
+                "type": "singleChoice",
+                "created_at": "2014-11-11T08:40:51.620Z",
+                "choices": [
+                    {
+                        "title": "XS"
+                    }, {
+                        "title": "S"
+                    }, {
+                        "title": "M"
+                    }, {
+                        "title": "L"
+                    }
+                ]
+            }
+            
+## Answer [/customers/{cid}/surveys/{sid}/questions/{qid}/answer]
+
++ Parameters
+    + cid: 1 (required, number) - ID of the Customer in form of an integer
+    + qid: 1 (required, number) - ID of the Question in form of an integer
+
+### Answer a question [POST]
+
+You may answer a question using this action. It takes a JSON
+object containing a collection of choiceIds or a text entry.
+
++ choices (array[string]) - A collection of choices.
++ entry (string) - A collection of choices.
+
+        
++ Response 201
+
+    + Headers
+
+            Location: /questions/1
