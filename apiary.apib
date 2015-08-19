@@ -10,28 +10,28 @@ Customer API is a simple microservice allowing consumers to view polls and vote 
 
 Attributes
 - `id` - Customer's ID
-- `created_at` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for when this object was created
-- `updated_at` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for last time this object was updated - *optional*
-- `group_id` - Customer's group (for Hunt Club members, groupe_id == 4)
+- `createdAt` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for when this object was created
+- `updatedAt` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for last time this object was updated - *optional*
+- `groupId` - Customer's group (for Hunt Club members, groupeId == 4)
 - `email` - Customer's Email Address
-- `first_name` - Customer's first name - *optional*
-- `last_name` - Customer's last name - *optional*
+- `firstName` - Customer's first name - *optional*
+- `lastName` - Customer's last name - *optional*
 - `gender` - Customer's gender (male or female) - *optional*
-- `birth_date` - Customer's birth_date - *optional*
-- `default_shipping_address_id` - Customer's default shipping address ID - *optional*
-- `default_billing_address_id` - Customer's default billing address ID - *optional*
-- `store_credit` - Customer's Store Credit (can't be updated from here)
+- `birthDate` - Customer's birthDate - *optional*
+- `defaultShippingAddressId` - Customer's default shipping address ID - *optional*
+- `defaultBillingAddressId` - Customer's default billing address ID - *optional*
+- `storeCredit` - Customer's Store Credit (can't be updated from here)
 - `currency` - Customer's setted Currency
 
 Extra Attributes for Customer Details
 - `gender` - *optional*
-- `facebook_id` - Customer's facebook ID - *optional*
-- `google_id` - Customer's google ID - *optional*
-- `advisor_id` - Customer's Style Advisor ID - *optional*
+- `facebookId` - Customer's facebook ID - *optional*
+- `googleId` - Customer's google ID - *optional*
+- `advisorId` - Customer's Style Advisor ID - *optional*
 
 
         
-## Customer [/customers/{customer_id}]
+## Customer [/customers/{customerId}]
 
 + Model (application/json)
 
@@ -41,22 +41,22 @@ Extra Attributes for Customer Details
     
             {
                 "id":                                       1,  
-                "group_id":                                 1, 
-                "created_at":                               "2015-01-07T13:57:00Z", 
-                "updated_at":                               "2015-01-10T09:11:53Z",
+                "groupId":                                 1, 
+                "createdAt":                               "2015-01-07T13:57:00Z", 
+                "updatedAt":                               "2015-01-10T09:11:53Z",
                 "email":                                    "michael@frankandoak.com", 
-                "first_name":                               "Michael", 
-                "last_name":                                "Eilers Smith", 
+                "firstName":                               "Michael", 
+                "lastName":                                "Eilers Smith", 
                 "gender":                                   "male", 
-                "birth_date":                                "03/17/1983", 
-                "store_credit":                             41.66, 
-                "facebook_id":                              4324325242, 
-                "google_id":                                7643322533243
+                "birthDate":                                "03/17/1983", 
+                "storeCredit":                             41.66, 
+                "facebookId":                              4324325242, 
+                "googleId":                                7643322533243
             }
             
             
 + Parameters
-    + customer_id (required, number, `1`) ... Numeric `id` of the User to perform action with. 
+    + customerId (required, number, `1`) ... Numeric `id` of the User to perform action with. 
 
 ### Retrieve a Customer [GET]
         
@@ -82,17 +82,17 @@ Extra Attributes for Customer Details
 + Request (application/json)
 
     Attributes
-    - `group_id` - Customer's group - *optional*
+    - `groupId` - Customer's group - *optional*
     - `email` - Customer's Email Address - *optional*
-    - `first_name` - Customer's first name - *optional*
-    - `last_name` - Customer's last name - *optional*
+    - `firstName` - Customer's first name - *optional*
+    - `lastName` - Customer's last name - *optional*
     - `gender` - Customer's gender (male or female) - *optional*
-    - `birth_date` - Customer's birth_date - *optional*
-    - `default_shipping_address_id` - Customer's default shipping address ID - *optional*
-    - `default_billing_address_id` - Customer's default billing address ID - *optional*
-    - `store_credit` - Customer's Store Credit - *optional, admin permission*
-    - `facebook_id` - Customer's facebook ID - *optional*
-    - `google_id` - Customer's google ID - *optional*
+    - `birthDate` - Customer's birthDate - *optional*
+    - `defaultShippingAddressId` - Customer's default shipping address ID - *optional*
+    - `defaultBillingAddressId` - Customer's default billing address ID - *optional*
+    - `storeCredit` - Customer's Store Credit - *optional, admin permission*
+    - `facebookId` - Customer's facebook ID - *optional*
+    - `googleId` - Customer's google ID - *optional*
     
     + Header
 
@@ -100,12 +100,12 @@ Extra Attributes for Customer Details
 
             { 
                 "email": "michael@frankandoak.com", 
-                "first_name": "Michael", 
-                "last_name": "Eilers Smith", 
+                "firstName": "Michael", 
+                "lastName": "Eilers Smith", 
                 "gender": "male", 
-                "birth_date": "03/17/1983", 
-                "facebook_id": 4324325242, 
-                "google_id": 7643322533243
+                "birthDate": "03/17/1983", 
+                "facebookId": 4324325242, 
+                "googleId": 7643322533243
             }
         
         
@@ -137,31 +137,31 @@ Extra Attributes for Customer Details
             [
                 {
                     "id": 1, 
-                    "created_at": "2015-01-07T13:57:00Z", 
-                    "updated_at": "2015-01-10T09:11:53Z", 
-                    "group_id": 4, 
+                    "createdAt": "2015-01-07T13:57:00Z", 
+                    "updatedAt": "2015-01-10T09:11:53Z", 
+                    "groupId": 4, 
                     "email": "michael@frankandoak.com", 
-                    "first_name": "Michael", 
-                    "last_name": "Eilers Smith", 
+                    "firstName": "Michael", 
+                    "lastName": "Eilers Smith", 
                     "gender": "male", 
-                    "birth_date": "03/17/1983", 
-                    "default_shipping_address_id":325413, 
-                    "default_billing_address_id": 270186,
-                    "store_credit": 41.66
+                    "birthDate": "03/17/1983", 
+                    "defaultShippingAddressId":325413, 
+                    "defaultBillingAddressId": 270186,
+                    "storeCredit": 41.66
                 }, 
                 {
                     "id": 2, 
-                    "created_at": "2015-01-07T13:57:00Z", 
-                    "updated_at": "2015-01-10T09:11:53Z", 
-                    "group_id": 1, 
+                    "createdAt": "2015-01-07T13:57:00Z", 
+                    "updatedAt": "2015-01-10T09:11:53Z", 
+                    "groupId": 1, 
                     "email": "sean@frankandoak.com", 
-                    "first_name": "Sean", 
-                    "last_name": "Connery", 
+                    "firstName": "Sean", 
+                    "lastName": "Connery", 
                     "gender": "male", 
-                    "birth_date": "03/17/1963", 
-                    "default_shipping_address_id":325413, 
-                    "default_billing_address_id": 270186,
-                    "store_credit": 41.66
+                    "birthDate": "03/17/1963", 
+                    "defaultShippingAddressId":325413, 
+                    "defaultBillingAddressId": 270186,
+                    "storeCredit": 41.66
                 }
             ]
 
@@ -192,14 +192,14 @@ Extra Attributes for Customer Details
 + Request (application/json)
 
     Attributes
-    - `group_id` - Customer's group - *optional*
+    - `groupId` - Customer's group - *optional*
     - `email` - Customer's Email Address
-    - `first_name` - Customer's first name - *optional*
-    - `last_name` - Customer's last name - *optional*
+    - `firstName` - Customer's first name - *optional*
+    - `lastName` - Customer's last name - *optional*
     - `gender` - Customer's gender (male or female) - *optional*
-    - `birth_date` - Customer's birth_date - *optional*
-    - `facebook_id` - Customer's facebook ID - *optional*
-    - `google_id` - Customer's google ID - *optional*
+    - `birthDate` - Customer's birthDate - *optional*
+    - `facebookId` - Customer's facebook ID - *optional*
+    - `googleId` - Customer's google ID - *optional*
 
 
     + Headers
@@ -210,28 +210,28 @@ Extra Attributes for Customer Details
     
             {
                 "email": "michael@frankandoak.com", 
-                "first_name": "Michael", 
-                "last_name": "Eilers Smith", 
+                "firstName": "Michael", 
+                "lastName": "Eilers Smith", 
                 "gender": "male", 
-                "birth_date": "03/17/1983", 
-                "facebook_id": 4324325242, 
-                "google_id": 7643322533243
+                "birthDate": "03/17/1983", 
+                "facebookId": 4324325242, 
+                "googleId": 7643322533243
             }
 
 + Response 201 (application/json)
 
         {
             "id": 1, 
-            "created_at": "2015-01-07T13:57:00Z", 
-            "group_id": 1, 
+            "createdAt": "2015-01-07T13:57:00Z", 
+            "groupId": 1, 
             "email": "michael@frankandoak.com", 
-            "first_name": "Michael", 
-            "last_name": "Eilers Smith", 
+            "firstName": "Michael", 
+            "lastName": "Eilers Smith", 
             "gender": "male", 
-            "birth_date": "03/17/1983", 
-            "store_credit": 0,00, 
-            "facebook_id": 4324325242, 
-            "google_id": 7643322533243
+            "birthDate": "03/17/1983", 
+            "storeCredit": 0,00, 
+            "facebookId": 4324325242, 
+            "googleId": 7643322533243
         }
         
 + Response 400 (application/json)
@@ -246,26 +246,26 @@ Extra Attributes for Customer Details
 
 Resources related to customer posts in the API.
 
-## Post [/customers/{cid}/posts/{post_id}]
+## Post [/customers/{cid}/posts/{postId}]
 
 A Post object has the following attributes:
 
 - `id`
-- `created_at` - An ISO8601 date when the question was created.
-- `updated_at` - An ISO8601 date when the question was updated.
-- `published_at` - An ISO8601 date when the question was published.
+- `createdAt` - An ISO8601 date when the question was created.
+- `updatedAt` - An ISO8601 date when the question was updated.
+- `publishedAt` - An ISO8601 date when the question was published.
 - `type` - { none, transaction, promotion, styleAdvice, content }
 - `title`
 - `message`
 - `is_deleted` - Has the user deleted the post
-- `deep_link` - *optional*
-- `web_url` - *optional*
-- `youtube_url` - *optional*
-- `vimeo_url` - *optional*
+- `deepLink` - *optional*
+- `webUrl` - *optional*
+- `youtubeUrl` - *optional*
+- `vimeoUrl` - *optional*
 
 + Parameters
     + cid: 1 (required, number) - ID of the Customer in form of an integer
-    + post_id: 1 (required, number) - ID of the Post in form of an integer
+    + postId: 1 (required, number) - ID of the Post in form of an integer
 
 + Model (application/json)
 
@@ -275,28 +275,28 @@ A Post object has the following attributes:
     
             {
                 "id": 1,
-                "created_at": "2014-11-11T08:40:51.620Z",
-                "updated_at": "2014-11-11T08:40:51.620Z",
-                "published_at": "2014-11-11T08:40:51.620Z",
+                "createdAt": "2014-11-11T08:40:51.620Z",
+                "updatedAt": "2014-11-11T08:40:51.620Z",
+                "publishedAt": "2014-11-11T08:40:51.620Z",
                 "type": "styleAdvice",
                 "title": "Style Watch",
                 "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
                 "images": [
                     {
                         "id": 1,
-                        "created_at": "2014-11-11T08:40:51.620Z",
-                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "createdAt": "2014-11-11T08:40:51.620Z",
+                        "updatedAt": "2014-11-11T08:40:51.620Z",
                         "title": "Short in the back",
                         "comment": "I really like how there is no hair on his neck."
-                        "image_url": "customers/1//posts/1/images/1/short.jpg"
+                        "imageUrl": "customers/1//posts/1/images/1/short.jpg"
                     },
                     {
                         "id": 2,
-                        "created_at": "2014-11-11T08:40:51.620Z",
-                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "createdAt": "2014-11-11T08:40:51.620Z",
+                        "updatedAt": "2014-11-11T08:40:51.620Z",
                         "title": "Fuzzy on top",
                         "comment": "I wonder what shampoo he uses."
-                        "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                        "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
                     }
                 ]
             }
@@ -307,28 +307,28 @@ A Post object has the following attributes:
 
         {
             "id": 1,
-            "created_at": "2014-11-11T08:40:51.620Z",
-            "updated_at": "2014-11-11T08:40:51.620Z",
-            "published_at": "2014-11-11T08:40:51.620Z",
+            "createdAt": "2014-11-11T08:40:51.620Z",
+            "updatedAt": "2014-11-11T08:40:51.620Z",
+            "publishedAt": "2014-11-11T08:40:51.620Z",
             "type": "styleAdvice",
             "title": "Style Watch",
             "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
             "images": [
                 {
                     "id": 1,
-                    "created_at": "2014-11-11T08:40:51.620Z",
-                    "updated_at": "2014-11-11T08:40:51.620Z",
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "updatedAt": "2014-11-11T08:40:51.620Z",
                     "title": "Short in the back",
                     "comment": "I really like how there is no hair on his neck."
-                    "image_url": "customers/1//posts/1/images/1/short.jpg"
+                    "imageUrl": "customers/1//posts/1/images/1/short.jpg"
                 },
                 {
                     "id": 2,
-                    "created_at": "2014-11-11T08:40:51.620Z",
-                    "updated_at": "2014-11-11T08:40:51.620Z",
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "updatedAt": "2014-11-11T08:40:51.620Z",
                     "title": "Fuzzy on top",
                     "comment": "I wonder what shampoo he uses."
-                    "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                    "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
                 }
             ]
         }
@@ -337,17 +337,17 @@ A Post object has the following attributes:
 + Request (application/json)
 
     Attributes
-    - `group_id` - Customer's group - *optional*
+    - `groupId` - Customer's group - *optional*
     - `email` - Customer's Email Address - *optional*
-    - `first_name` - Customer's first name - *optional*
-    - `last_name` - Customer's last name - *optional*
+    - `firstName` - Customer's first name - *optional*
+    - `lastName` - Customer's last name - *optional*
     - `gender` - Customer's gender (male or female) - *optional*
-    - `birth_date` - Customer's birth_date - *optional*
-    - `default_shipping_address_id` - Customer's default shipping address ID - *optional*
-    - `default_billing_address_id` - Customer's default billing address ID - *optional*
-    - `store_credit` - Customer's Store Credit - *optional, admin permission*
-    - `facebook_id` - Customer's facebook ID - *optional*
-    - `google_id` - Customer's google ID - *optional*
+    - `birthDate` - Customer's birthDate - *optional*
+    - `defaultShippingAddressId` - Customer's default shipping address ID - *optional*
+    - `defaultBillingAddressId` - Customer's default billing address ID - *optional*
+    - `storeCredit` - Customer's Store Credit - *optional, admin permission*
+    - `facebookId` - Customer's facebook ID - *optional*
+    - `googleId` - Customer's google ID - *optional*
     
     + Header
 
@@ -355,28 +355,28 @@ A Post object has the following attributes:
 
             {
                 "id": 1,
-                "created_at": "2014-11-11T08:40:51.620Z",
-                "updated_at": "2014-11-11T08:40:51.620Z",
-                "published_at": "2014-11-11T08:40:51.620Z",
+                "createdAt": "2014-11-11T08:40:51.620Z",
+                "updatedAt": "2014-11-11T08:40:51.620Z",
+                "publishedAt": "2014-11-11T08:40:51.620Z",
                 "type": "styleAdvice",
                 "title": "Style Watch",
                 "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
                 "images": [
                     {
                         "id": 1,
-                        "created_at": "2014-11-11T08:40:51.620Z",
-                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "createdAt": "2014-11-11T08:40:51.620Z",
+                        "updatedAt": "2014-11-11T08:40:51.620Z",
                         "title": "Short in the back",
                         "comment": "I really like how there is no hair on his neck."
-                        "image_url": "customers/1//posts/1/images/1/short.jpg"
+                        "imageUrl": "customers/1//posts/1/images/1/short.jpg"
                     },
                     {
                         "id": 2,
-                        "created_at": "2014-11-11T08:40:51.620Z",
-                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "createdAt": "2014-11-11T08:40:51.620Z",
+                        "updatedAt": "2014-11-11T08:40:51.620Z",
                         "title": "Fuzzy on top",
                         "comment": "I wonder what shampoo he uses."
-                        "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                        "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
                     },
                     "is_deleted": 1
                 ]
@@ -410,52 +410,52 @@ A Post object has the following attributes:
             [
                 {
                     "id": 1,
-                    "created_at": "2014-11-11T08:40:51.620Z",
-                    "updated_at": "2014-11-11T08:40:51.620Z",
-                    "published_at": "2014-11-11T08:40:51.620Z",
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                    "publishedAt": "2014-11-11T08:40:51.620Z",
                     "type": "styleAdvice",
                     "title": "Style Watch",
                     "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
                     "images": [
                         {
                             "id": 1,
-                            "created_at": "2014-11-11T08:40:51.620Z",
-                            "updated_at": "2014-11-11T08:40:51.620Z",
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "updatedAt": "2014-11-11T08:40:51.620Z",
                             "title": "Short in the back",
                             "comment": "I really like how there is no hair on his neck."
-                            "image_url": "customers/1//posts/1/images/1/short.jpg"
+                            "imageUrl": "customers/1//posts/1/images/1/short.jpg"
                         },
                         {
                             "id": 2,
-                            "created_at": "2014-11-11T08:40:51.620Z",
-                            "updated_at": "2014-11-11T08:40:51.620Z",
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "updatedAt": "2014-11-11T08:40:51.620Z",
                             "title": "Fuzzy on top",
                             "comment": "I wonder what shampoo he uses."
-                            "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                            "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
                         }
                     ]
                 },
                 {
                     "id": 2,
-                    "created_at": "2014-11-11T08:40:51.620Z",
-                    "updated_at": "2014-11-11T08:40:51.620Z",
-                    "published_at": "2014-11-11T08:40:51.620Z",
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                    "publishedAt": "2014-11-11T08:40:51.620Z",
                     "type": "promotion",
                     "title": "The July collection is now live",
                     "message": "This month's collection is inspired by Spain. Spain is a pretty awesome country",
                     "products": [
                         {
                             "id": 1,
-                            "product_id": 4323444,
-                            "created_at": "2014-11-11T08:40:51.620Z",
-                            "updated_at": "2014-11-11T08:40:51.620Z",
+                            "productId": 4323444,
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "updatedAt": "2014-11-11T08:40:51.620Z",
                             "comment": "What a great suit this is."
                         },
                         {
                             "id": 2,
-                            "product_id": 5435434,
-                            "created_at": "2014-11-11T08:40:51.620Z",
-                            "updated_at": "2014-11-11T08:40:51.620Z",
+                            "productId": 5435434,
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "updatedAt": "2014-11-11T08:40:51.620Z",
                             "comment": "I really see you in this sweater."
                         }
                     ]
@@ -473,7 +473,7 @@ object containing a post.
 + Request (application/json)
 
         {
-            "published_at": "2014-11-11T08:40:51.620Z",
+            "publishedAt": "2014-11-11T08:40:51.620Z",
             "type": "styleAdvice",
             "title": "Style Watch",
             "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
@@ -482,13 +482,13 @@ object containing a post.
                     "id": 1,
                     "title": "Short in the back",
                     "comment": "I really like how there is no hair on his neck."
-                    "image_url": "customers/1//posts/1/images/1/short.jpg"
+                    "imageUrl": "customers/1//posts/1/images/1/short.jpg"
                 },
                 {
                     "id": 2,
                     "title": "Fuzzy on top",
                     "comment": "I wonder what shampoo he uses."
-                    "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                    "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
                 }
             ]
         }
@@ -503,27 +503,27 @@ object containing a post.
 
             {
                 "id": 1,
-                "created_at": "2014-11-11T08:40:51.620Z",
-                "published_at": "2014-11-11T08:40:51.620Z",
+                "createdAt": "2014-11-11T08:40:51.620Z",
+                "publishedAt": "2014-11-11T08:40:51.620Z",
                 "type": "styleAdvice",
                 "title": "Style Watch",
                 "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
                 "images": [
                     {
                         "id": 1,
-                        "created_at": "2014-11-11T08:40:51.620Z",
-                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "createdAt": "2014-11-11T08:40:51.620Z",
+                        "updatedAt": "2014-11-11T08:40:51.620Z",
                         "title": "Short in the back",
                         "comment": "I really like how there is no hair on his neck."
-                        "image_url": "customers/1//posts/1/images/1/short.jpg"
+                        "imageUrl": "customers/1//posts/1/images/1/short.jpg"
                     },
                     {
                         "id": 2,
-                        "created_at": "2014-11-11T08:40:51.620Z",
-                        "updated_at": "2014-11-11T08:40:51.620Z",
+                        "createdAt": "2014-11-11T08:40:51.620Z",
+                        "updatedAt": "2014-11-11T08:40:51.620Z",
                         "title": "Fuzzy on top",
                         "comment": "I wonder what shampoo he uses."
-                        "image_url": "customers/1//posts/1/images/2/fuzzy.jpg"
+                        "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
                     }
                 ]
             }
@@ -537,26 +537,26 @@ object containing a post.
 
 Resources related to customer surveys in the API.
 
-## Survey [/customers/{cid}/surveys/{survey_id}]
+## Survey [/customers/{cid}/surveys/{surveyId}]
 
 A Survey object has the following attributes:
 
 - `id`
-- `created_at` - An ISO8601 date when the question was created.
-- `updated_at` - An ISO8601 date when the question was updated.
+- `createdAt` - An ISO8601 date when the question was created.
+- `updatedAt` - An ISO8601 date when the question was updated.
 - `title`
 - `subtitle`
 - `description`
-- `image_url` - *optional*
-- `gender_group` - { none, male, female } - *optional*
-- `age_group` - { none, 18-25, 26-39, 40+ } - *optional*
-- `customer_group_ids` - List of customer groups that have exclusive access to the survey, separated by a comma. If null, the survey is public. - *optional*
-- `expires_at` - *optional*
+- `imageUrl` - *optional*
+- `genderGroup` - { none, male, female } - *optional*
+- `ageGroup` - { none, 18-25, 26-39, 40+ } - *optional*
+- `customerGroupIds` - List of customer groups that have exclusive access to the survey, separated by a comma. If null, the survey is public. - *optional*
+- `expiresAt` - *optional*
 - `seen` - *optional*
 
 + Parameters
     + cid: 1 (required, number) - ID of the Customer in form of an integer
-    + survey_id: 1 (required, number) - ID of the Survey in form of an integer
+    + surveyId: 1 (required, number) - ID of the Survey in form of an integer
 
 ### View a Survey's Detail [GET]
 
@@ -565,8 +565,8 @@ A Survey object has the following attributes:
         {
             "id": 1,
             "title": "Sizing",
-            "created_at": "2014-11-11T08:40:51.620Z",
-            "image_url": "/surveys/1.jpg"
+            "createdAt": "2014-11-11T08:40:51.620Z",
+            "imageUrl": "/surveys/1.jpg"
         }
 
             
@@ -590,14 +590,14 @@ A Survey object has the following attributes:
                 {
                     "id": 1,
                     "title": "Sizing",
-                    "created_at": "2014-11-11T08:40:51.620Z",
-                    "image_url": "/surveys/1.jpg"
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "imageUrl": "/surveys/1.jpg"
                 },
                 {
                     "id": 2,
                     "title": "Budget",
-                    "created_at": "2014-11-11T08:40:51.620Z",
-                    "image_url": "/surveys/2.jpg"
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "imageUrl": "/surveys/2.jpg"
                 }
             ]
 
@@ -626,33 +626,33 @@ object containing a survey.
             {
                 "id": 1,
                 "title": "Sizing",
-                "created_at": "2014-11-11T08:40:51.620Z",
-                "image_url": "/surveys/1.jpg"
+                "createdAt": "2014-11-11T08:40:51.620Z",
+                "imageUrl": "/surveys/1.jpg"
             }
 
-## Question [/customers/{cid}/surveys/{sid}/questions/{question_id}]
+## Question [/customers/{cid}/surveys/{sid}/questions/{questionId}]
 
 A Question object has the following attributes:
 
 - `id`
-- `created_at` - An ISO8601 date when the question was created.
-- `updated_at` - An ISO8601 date when the question was updated.
+- `createdAt` - An ISO8601 date when the question was created.
+- `updatedAt` - An ISO8601 date when the question was updated.
 - `type` - { none, singleChoice, multipleChoice, field }
 - `title`
 - `subtitle`
 - `description`
-- `is_required`
-- `is_recurring` - *optional*
-- `recurrence_in_days` - *optional*
-- `gender_group` - { none, male, female } - *optional*
-- `age_group` - { none, 18-25, 26-39, 40+ } - *optional*
-- `image_url` - *optional*
+- `isRequired`
+- `isRecurring` - *optional*
+- `recurrenceInDays` - *optional*
+- `genderGroup` - { none, male, female } - *optional*
+- `ageGroup` - { none, 18-25, 26-39, 40+ } - *optional*
+- `imageUrl` - *optional*
 - `votes` - Number of times the choice was selected as an answer - *optional*
 - `choices` - An array of Choice objects. - *optional*
 
 + Parameters
     + cid: 1 (required, number) - ID of the Customer in form of an integer
-    + question_id: 1 (required, number) - ID of the Question in form of an integer
+    + questionId: 1 (required, number) - ID of the Question in form of an integer
 
 ### View a Questions Detail [GET]
 
@@ -662,34 +662,34 @@ A Question object has the following attributes:
             "id": 1,
             "title": "What is your shirt size?",
             "type": "singleChoice",
-            "created_at": "2014-11-11T08:40:51.620Z",
-            "image_url": "/questions/1.jpg",
+            "createdAt": "2014-11-11T08:40:51.620Z",
+            "imageUrl": "/questions/1.jpg",
             "choices": [
                 {
                     "id": 1,
-                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "createdAt": "2014-11-11T08:40:51.620Z",
                     "title": "XS",
                     "votes": 2048
                 }, {
                     "id": 2,
-                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "createdAt": "2014-11-11T08:40:51.620Z",
                     "title": "S",
                     "votes": 1024
                 }, {
                     "id": 3,
-                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "createdAt": "2014-11-11T08:40:51.620Z",
                     "title": "M",
                     "votes": 512
                 }, {
                     "id": 4,
-                    "created_at": "2014-11-11T08:40:51.620Z",
+                    "createdAt": "2014-11-11T08:40:51.620Z",
                     "title": "L",
                     "votes": 256
                 }
             ],
             "answer": {
                 "id": 1,
-                "created_at": "2014-11-11T08:40:51.620Z",
+                "createdAt": "2014-11-11T08:40:51.620Z",
                 "choices": [ 1 ]
             }
         }
@@ -719,34 +719,34 @@ A Question object has the following attributes:
                     "id": 1,
                     "title": "What is your shirt size?",
                     "type": "singleChoice",
-                    "created_at": "2014-11-11T08:40:51.620Z",
-                    "image_url": "/questions/1.jpg",
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "imageUrl": "/questions/1.jpg",
                     "choices": [
                                 {
                                     "id": 1,
-                                    "created_at": "2014-11-11T08:40:51.620Z",
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
                                     "title": "XS",
                                     "votes": 2048
                                 }, {
                                     "id": 2,
-                                    "created_at": "2014-11-11T08:40:51.620Z",
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
                                     "title": "S",
                                     "votes": 1024
                                 }, {
                                     "id": 3,
-                                    "created_at": "2014-11-11T08:40:51.620Z",
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
                                     "title": "M",
                                     "votes": 512
                                 }, {
                                     "id": 4,
-                                    "created_at": "2014-11-11T08:40:51.620Z",
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
                                     "title": "L",
                                     "votes": 256
                                 }
                             ],
                     "answer": {
                         "id": 1,
-                        "created_at": "2014-11-11T08:40:51.620Z",
+                        "createdAt": "2014-11-11T08:40:51.620Z",
                         "choices": [ 1 ]
                     }
                 }
@@ -785,7 +785,7 @@ form of choices.
             {
                 "question": "What is your pant fit?",
                 "type": "singleChoice",
-                "created_at": "2014-11-11T08:40:51.620Z",
+                "createdAt": "2014-11-11T08:40:51.620Z",
                 "choices": [
                     {
                         "title": "XS"
