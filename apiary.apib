@@ -12,7 +12,7 @@ Attributes
 - `id` - Customer's ID
 - `createdAt` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for when this object was created
 - `updatedAt` - UTC timestamp ([ISO 8601](http://www.w3.org/TR/NOTE-datetime)) for last time this object was updated - *optional*
-- `groupId` - Customer's group (for Hunt Club members, groupeId == 4)
+- `groups` - Customer's groups as array of strings (Hunt Club members, ["huntclub"])
 - `email` - Customer's Email Address
 - `firstName` - Customer's first name - *optional*
 - `lastName` - Customer's last name - *optional*
@@ -25,10 +25,8 @@ Attributes
 
 Extra Attributes for Customer Details
 - `gender` - *optional*
-- `facebookId` - Customer's facebook ID - *optional*
-- `googleId` - Customer's google ID - *optional*
 - `advisorId` - Customer's Style Advisor ID - *optional*
-
+- `externalAccounts` - *optional*
 
         
 ## Customer [/customers/{customerId}]
@@ -40,18 +38,24 @@ Extra Attributes for Customer Details
     + Body
     
             {
+                "@type":                                    "Customer",
                 "id":                                       1,  
-                "groupId":                                 1, 
-                "createdAt":                               "2015-01-07T13:57:00Z", 
-                "updatedAt":                               "2015-01-10T09:11:53Z",
+                "groupId":                                  1, 
+                "createdAt":                                "2015-01-07T13:57:00Z", 
+                "updatedAt":                                "2015-01-10T09:11:53Z",
                 "email":                                    "michael@frankandoak.com", 
-                "firstName":                               "Michael", 
-                "lastName":                                "Eilers Smith", 
+                "firstName":                                "Michael", 
+                "lastName":                                 "Eilers Smith", 
                 "gender":                                   "male", 
                 "birthDate":                                "03/17/1983", 
-                "storeCredit":                             41.66, 
-                "facebookId":                              4324325242, 
-                "googleId":                                7643322533243
+                "storeCredit":                              41.66, 
+                "externalAccounts" : [
+                    {
+                        "@type": "ExternalAccount",
+                        "provider": "facebook",
+                        "id": "4324325242"
+                    }
+                ]
             }
             
             
@@ -104,8 +108,12 @@ Extra Attributes for Customer Details
                 "lastName": "Eilers Smith", 
                 "gender": "male", 
                 "birthDate": "03/17/1983", 
-                "facebookId": 4324325242, 
-                "googleId": 7643322533243
+                "externalAccounts" : [
+                    {
+                        "provider": "facebook",
+                        "id": "4324325242"
+                    }
+                ]
             }
         
         
@@ -274,6 +282,7 @@ A Post object has the following attributes:
     + Body
     
             {
+                "@type": "Post",
                 "id": 1,
                 "createdAt": "2014-11-11T08:40:51.620Z",
                 "updatedAt": "2014-11-11T08:40:51.620Z",
@@ -306,6 +315,7 @@ A Post object has the following attributes:
 + Response 200 (application/json)
 
         {
+            "@type": "Post",
             "id": 1,
             "createdAt": "2014-11-11T08:40:51.620Z",
             "updatedAt": "2014-11-11T08:40:51.620Z",
@@ -409,6 +419,7 @@ A Post object has the following attributes:
 
             [
                 {
+                    "@type": "Post",
                     "id": 1,
                     "createdAt": "2014-11-11T08:40:51.620Z",
                     "updatedAt": "2014-11-11T08:40:51.620Z",
@@ -436,6 +447,7 @@ A Post object has the following attributes:
                     ]
                 },
                 {
+                    "@type": "Post",
                     "id": 2,
                     "createdAt": "2014-11-11T08:40:51.620Z",
                     "updatedAt": "2014-11-11T08:40:51.620Z",
@@ -550,7 +562,7 @@ A Survey object has the following attributes:
 - `imageUrl` - *optional*
 - `genderGroup` - { none, male, female } - *optional*
 - `ageGroup` - { none, 18-25, 26-39, 40+ } - *optional*
-- `customerGroupIds` - List of customer groups that have exclusive access to the survey, separated by a comma. If null, the survey is public. - *optional*
+- `customerGroups` - List of customer groups that have exclusive access to the survey, separated by a comma. If null, the survey is public. - *optional*
 - `expiresAt` - *optional*
 - `seen` - *optional*
 
@@ -563,6 +575,7 @@ A Survey object has the following attributes:
 + Response 200 (application/json)
 
         {
+            "@type": "Survey",
             "id": 1,
             "title": "Sizing",
             "createdAt": "2014-11-11T08:40:51.620Z",
@@ -588,12 +601,14 @@ A Survey object has the following attributes:
 
             [
                 {
+                    "@type": "Survey",
                     "id": 1,
                     "title": "Sizing",
                     "createdAt": "2014-11-11T08:40:51.620Z",
                     "imageUrl": "/surveys/1.jpg"
                 },
                 {
+                    "@type": "Survey",
                     "id": 2,
                     "title": "Budget",
                     "createdAt": "2014-11-11T08:40:51.620Z",
@@ -659,6 +674,7 @@ A Question object has the following attributes:
 + Response 200 (application/json)
 
         {
+            "@type": "Question",
             "id": 1,
             "title": "What is your shirt size?",
             "type": "singleChoice",
@@ -716,6 +732,7 @@ A Question object has the following attributes:
 
             [
                 {
+                    "@type": "Question",
                     "id": 1,
                     "title": "What is your shirt size?",
                     "type": "singleChoice",
@@ -798,12 +815,114 @@ form of choices.
                     }
                 ]
             }
+
+## Choice [/customers/{cid}/surveys/{sid}/questions/{qid}/choices/{choiceId}]
+
+A Choice object has the following attributes:
+
+- `id`
+- `createdAt` - An ISO8601 date when the question was created.
+- `updatedAt` - An ISO8601 date when the question was updated.
+- `type` - { none, singleChoice, multipleChoice, field }
+- `title`
+- `subtitle`
+- `description`
+- `isRequired`
+- `isRecurring` - *optional*
+- `recurrenceInDays` - *optional*
+- `genderGroup` - { none, male, female } - *optional*
+- `ageGroup` - { none, 18-25, 26-39, 40+ } - *optional*
+- `imageUrl` - *optional*
+- `votes` - Number of times the choice was selected as an answer - *optional*
+- `choices` - An array of Choice objects. - *optional*
+
++ Parameters
+    + cid: 1 (required, number) - ID of the Customer in form of an integer
+    + qid: 1 (required, number) - ID of the Question in form of an integer
+    + choiceId: 1 (required, number) - ID of the Choice in form of an integer
+
+### View a Choices Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "@type": "Choice",
+            "id": 1,
+            "createdAt": "2014-11-11T08:40:51.620Z",
+            "title": "S",
+            "votes": 256
+        }
+
+
+
+            
+            
+## Choices Collection [/customers/{cid}/surveys/{sid}/questions/{qid}/choices]
+
+### List All Choices [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Link: </questions?page=2>; rel="next"
+
+    + Body
+
+            [
+                {
+                    "@type": "Choice",
+                    "id": 1,
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "title": "XS",
+                    "votes": 2048
+                },
+                {
+                    "@type": "Choice",
+                    "id": 2,
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "title": "S",
+                    "votes": 2048
+                }
+            ]
+
+### Create a Choice [POST]
+
+You may create your own choice using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
++ title (string) - The choice title
+
++ Request (application/json)
+
+        {
+            "title": "XS"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /sites/1/customers/432432/surveys/1/questions/1/choices/2
+
+    + Body
+
+                {
+                    "@type": "Choice",
+                    "id": 2,
+                    "createdAt": "2014-11-11T08:40:51.620Z",
+                    "title": "S",
+                    "votes": 2048
+                }
             
 ## Answer [/customers/{cid}/surveys/{sid}/questions/{qid}/answer]
 
 + Parameters
     + cid: 1 (required, number) - ID of the Customer in form of an integer
     + qid: 1 (required, number) - ID of the Question in form of an integer
+    
+
 
 ### Answer a question [POST]
 
@@ -819,3 +938,107 @@ object containing a collection of choiceIds or a text entry.
     + Headers
 
             Location: /questions/1
+            
+            
+            
+## Group Answer
+
+Resources related to customer surveys in the API.
+
+## Answer [/customers/{cid}/answers/{answerId}]
+
+A Answer object has the following attributes:
+
+- `id`
+- `createdAt` - An ISO8601 date when the question was created.
+- `updatedAt` - An ISO8601 date when the question was updated.
+- `surveyId`
+- `questionId`
+- `choices`- Array of choice Ids - *optional*
+- `entry` - *optional*
+
++ Parameters
+    + cid: 1 (required, number) - ID of the Customer in form of an integer
+    + answerId: 1 (required, number) - ID of the Answer in form of an integer
+
+### View a Answer's Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "@type": "Answer",
+            "id": 1,
+            "surveyId": 1,
+            "questionId": 43,
+            "choices": [1,4,5]
+        }
+
+            
+            
+## Answers Collection [/customers/{cid}/answers{?page}]
+
++ Parameters
+    + page: 1 (optional, number) - The page of answers to return
+
+### List All Answers [GET]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Link: </answers?page=2>; rel="next"
+
+    + Body
+
+            [
+                {
+                    "@type": "Answer",
+                    "id": 33,
+                    "surveyId": 1,
+                    "questionId": 43,
+                    "choices": [1,4,5]
+                },
+                {
+                    "@type": "Answer",
+                    "id": 34,
+                    "surveyId": 1,
+                    "questionId": 46,
+                    "entry": "I like going to movies"
+                },
+            ]
+
+### Create a Answer [POST]
+
+You may create your own survey using this action. It takes a JSON
+object containing a survey.
+
++ surveyId (integer) - The survey id
++ questionId (integer) - The question id
++ choices (Array[integer]) - The list of choices selected - *Optional*
+- entry (string) - a text entry - *optional*
++ ...
+
++ Request (application/json)
+
+            {
+                "surveyId": 1,
+                "questionId": 34,
+                "entry": "I like bicycles"
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /answers/2
+
+    + Body
+
+            {
+                "@type": "Answer",
+                "id": 33,
+                "surveyId": 1,
+                "questionId": 43,
+                "choices": [1,4,5]
+            }
+
