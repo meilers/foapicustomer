@@ -142,36 +142,45 @@ Extra Attributes for Customer Details
             
     + Body
 
-            [
-                {
-                    "id": 1, 
-                    "createdAt": "2015-01-07T13:57:00Z", 
-                    "updatedAt": "2015-01-10T09:11:53Z", 
-                    "groupId": 4, 
-                    "email": "michael@frankandoak.com", 
-                    "firstName": "Michael", 
-                    "lastName": "Eilers Smith", 
-                    "gender": "male", 
-                    "birthDate": "03/17/1983", 
-                    "defaultShippingAddressId":325413, 
-                    "defaultBillingAddressId": 270186,
-                    "storeCredit": 41.66
-                }, 
-                {
-                    "id": 2, 
-                    "createdAt": "2015-01-07T13:57:00Z", 
-                    "updatedAt": "2015-01-10T09:11:53Z", 
-                    "groupId": 1, 
-                    "email": "sean@frankandoak.com", 
-                    "firstName": "Sean", 
-                    "lastName": "Connery", 
-                    "gender": "male", 
-                    "birthDate": "03/17/1963", 
-                    "defaultShippingAddressId":325413, 
-                    "defaultBillingAddressId": 270186,
-                    "storeCredit": 41.66
-                }
-            ]
+            {
+                "previous": "/customers?page=2",
+                "next": "/customers?page=4",
+                "last": "/customers?page=498",
+                "@type":"Collection",
+                "member": 
+                    [
+                        {
+                            "@type": "Customer",
+                            "id": 1, 
+                            "createdAt": "2015-01-07T13:57:00Z", 
+                            "updatedAt": "2015-01-10T09:11:53Z", 
+                            "groupId": 4, 
+                            "email": "michael@frankandoak.com", 
+                            "firstName": "Michael", 
+                            "lastName": "Eilers Smith", 
+                            "gender": "male", 
+                            "birthDate": "03/17/1983", 
+                            "defaultShippingAddressId":325413, 
+                            "defaultBillingAddressId": 270186,
+                            "storeCredit": 41.66
+                        }, 
+                        {
+                            "@type": "Customer",
+                            "id": 2, 
+                            "createdAt": "2015-01-07T13:57:00Z", 
+                            "updatedAt": "2015-01-10T09:11:53Z", 
+                            "groupId": 1, 
+                            "email": "sean@frankandoak.com", 
+                            "firstName": "Sean", 
+                            "lastName": "Connery", 
+                            "gender": "male", 
+                            "birthDate": "03/17/1963", 
+                            "defaultShippingAddressId":325413, 
+                            "defaultBillingAddressId": 270186,
+                            "storeCredit": 41.66
+                        }
+                    ]
+            }
 
     
 ### List all Customers [GET]
@@ -229,6 +238,7 @@ Extra Attributes for Customer Details
 + Response 201 (application/json)
 
         {
+            "@type": "Customer",
             "id": 1, 
             "createdAt": "2015-01-07T13:57:00Z", 
             "groupId": 1, 
@@ -313,6 +323,7 @@ A Post object has the following attributes:
 ### View a Post's Detail [GET]
 
 + Response 200 (application/json)
+
 
         {
             "@type": "Post",
@@ -417,17 +428,121 @@ A Post object has the following attributes:
 
     + Body
 
-            [
-                {
-                    "@type": "Post",
-                    "id": 1,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "updatedAt": "2014-11-11T08:40:51.620Z",
-                    "publishedAt": "2014-11-11T08:40:51.620Z",
-                    "type": "styleAdvice",
-                    "title": "Style Watch",
-                    "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
-                    "images": [
+            {
+                "previous": "/posts?page=2",
+                "next": "/posts?page=4",
+                "last": "/posts?page=498",
+                "@type":"Collection",
+                "member": 
+                    [
+                        {
+                            "@type": "Post",
+                            "id": 1,
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "updatedAt": "2014-11-11T08:40:51.620Z",
+                            "publishedAt": "2014-11-11T08:40:51.620Z",
+                            "type": "styleAdvice",
+                            "title": "Style Watch",
+                            "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
+                            "images": [
+                                {
+                                    "id": 1,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "title": "Short in the back",
+                                    "comment": "I really like how there is no hair on his neck."
+                                    "imageUrl": "customers/1//posts/1/images/1/short.jpg"
+                                },
+                                {
+                                    "id": 2,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "title": "Fuzzy on top",
+                                    "comment": "I wonder what shampoo he uses."
+                                    "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
+                                }
+                            ]
+                        },
+                        {
+                            "@type": "Post",
+                            "id": 2,
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "updatedAt": "2014-11-11T08:40:51.620Z",
+                            "publishedAt": "2014-11-11T08:40:51.620Z",
+                            "type": "promotion",
+                            "title": "The July collection is now live",
+                            "message": "This month's collection is inspired by Spain. Spain is a pretty awesome country",
+                            "products": [
+                                {
+                                    "id": 1,
+                                    "productId": 4323444,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "comment": "What a great suit this is."
+                                },
+                                {
+                                    "id": 2,
+                                    "productId": 5435434,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "comment": "I really see you in this sweater."
+                                }
+                            ]
+                        }
+                    ]
+            }
+            
+
+### Create a Post [POST]
+
+You may create your own survey using this action. It takes a JSON
+object containing a post.
+
++ title (string) - The post title
++ ...
+
++ Request (application/json)
+
+        {
+            "publishedAt": "2014-11-11T08:40:51.620Z",
+            "type": "styleAdvice",
+            "title": "Style Watch",
+            "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
+            "images": 
+                [
+                    {
+                        "id": 1,
+                        "title": "Short in the back",
+                        "comment": "I really like how there is no hair on his neck."
+                        "imageUrl": "customers/1//posts/1/images/1/short.jpg"
+                    },
+                    {
+                        "id": 2,
+                        "title": "Fuzzy on top",
+                        "comment": "I wonder what shampoo he uses."
+                        "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
+                    }
+                ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /surveys/2
+
+    + Body
+
+            {
+                "@type": "Post",
+                "id": 1,
+                "createdAt": "2014-11-11T08:40:51.620Z",
+                "publishedAt": "2014-11-11T08:40:51.620Z",
+                "type": "styleAdvice",
+                "title": "Style Watch",
+                "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
+                "images": 
+                    [
                         {
                             "id": 1,
                             "createdAt": "2014-11-11T08:40:51.620Z",
@@ -445,99 +560,6 @@ A Post object has the following attributes:
                             "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
                         }
                     ]
-                },
-                {
-                    "@type": "Post",
-                    "id": 2,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "updatedAt": "2014-11-11T08:40:51.620Z",
-                    "publishedAt": "2014-11-11T08:40:51.620Z",
-                    "type": "promotion",
-                    "title": "The July collection is now live",
-                    "message": "This month's collection is inspired by Spain. Spain is a pretty awesome country",
-                    "products": [
-                        {
-                            "id": 1,
-                            "productId": 4323444,
-                            "createdAt": "2014-11-11T08:40:51.620Z",
-                            "updatedAt": "2014-11-11T08:40:51.620Z",
-                            "comment": "What a great suit this is."
-                        },
-                        {
-                            "id": 2,
-                            "productId": 5435434,
-                            "createdAt": "2014-11-11T08:40:51.620Z",
-                            "updatedAt": "2014-11-11T08:40:51.620Z",
-                            "comment": "I really see you in this sweater."
-                        }
-                    ]
-                }
-            ]
-
-### Create a Post [POST]
-
-You may create your own survey using this action. It takes a JSON
-object containing a post.
-
-+ title (string) - The post title
-+ ...
-
-+ Request (application/json)
-
-        {
-            "publishedAt": "2014-11-11T08:40:51.620Z",
-            "type": "styleAdvice",
-            "title": "Style Watch",
-            "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
-            "images": [
-                {
-                    "id": 1,
-                    "title": "Short in the back",
-                    "comment": "I really like how there is no hair on his neck."
-                    "imageUrl": "customers/1//posts/1/images/1/short.jpg"
-                },
-                {
-                    "id": 2,
-                    "title": "Fuzzy on top",
-                    "comment": "I wonder what shampoo he uses."
-                    "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
-                }
-            ]
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /surveys/2
-
-    + Body
-
-            {
-                "id": 1,
-                "createdAt": "2014-11-11T08:40:51.620Z",
-                "publishedAt": "2014-11-11T08:40:51.620Z",
-                "type": "styleAdvice",
-                "title": "Style Watch",
-                "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
-                "images": [
-                    {
-                        "id": 1,
-                        "createdAt": "2014-11-11T08:40:51.620Z",
-                        "updatedAt": "2014-11-11T08:40:51.620Z",
-                        "title": "Short in the back",
-                        "comment": "I really like how there is no hair on his neck."
-                        "imageUrl": "customers/1//posts/1/images/1/short.jpg"
-                    },
-                    {
-                        "id": 2,
-                        "createdAt": "2014-11-11T08:40:51.620Z",
-                        "updatedAt": "2014-11-11T08:40:51.620Z",
-                        "title": "Fuzzy on top",
-                        "comment": "I wonder what shampoo he uses."
-                        "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
-                    }
-                ]
             }
 
 
@@ -599,22 +621,29 @@ A Survey object has the following attributes:
 
     + Body
 
-            [
-                {
-                    "@type": "Survey",
-                    "id": 1,
-                    "title": "Sizing",
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "imageUrl": "/surveys/1.jpg"
-                },
-                {
-                    "@type": "Survey",
-                    "id": 2,
-                    "title": "Budget",
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "imageUrl": "/surveys/2.jpg"
+            {
+                "previous": "/posts?page=2",
+                "next": "/posts?page=4",
+                "last": "/posts?page=498",
+                "@type": "Collection",
+                "member": 
+                    [
+                        {
+                            "@type": "Survey",
+                            "id": 1,
+                            "title": "Sizing",
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "imageUrl": "/surveys/1.jpg"
+                        },
+                        {
+                            "@type": "Survey",
+                            "id": 2,
+                            "title": "Budget",
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "imageUrl": "/surveys/2.jpg"
+                        }
+                    ]
                 }
-            ]
 
 ### Create a Survey [POST]
 
