@@ -1031,28 +1031,6 @@ form of choices.
                     "votes": 2048
                 }
             
-## Answer [/customers/{cid}/surveys/{sid}/questions/{qid}/answer]
-
-+ Parameters
-    + cid: 1 (required, number) - ID of the Customer in form of an integer
-    + qid: 1 (required, number) - ID of the Question in form of an integer
-    
-
-
-### Answer a question [POST]
-
-You may answer a question using this action. It takes a JSON
-object containing a collection of choiceIds or a text entry.
-
-+ choices (array[string]) - A collection of choices.
-+ entry (string) - A collection of choices.
-
-        
-+ Response 201
-
-    + Headers
-
-            Location: /questions/1
             
             
             
@@ -1090,10 +1068,12 @@ A Answer object has the following attributes:
 
             
             
-## Answers Collection [/customers/{cid}/answers{?page}]
+## Answers Collection [/customers/{cid}/answers{?page}{?surveyId}{?questionId}]
 
 + Parameters
     + page: 1 (optional, number) - The page of answers to return
+    + surveyId: 1 (optional, number) - The id of the survey
+    + questionId: 1 (optional, number) - The id of the question
 
 ### List All Answers [GET]
 
@@ -1105,22 +1085,29 @@ A Answer object has the following attributes:
 
     + Body
 
-            [
-                {
-                    "@type": "Answer",
-                    "id": 33,
-                    "surveyId": 1,
-                    "questionId": 43,
-                    "choices": [1,4,5]
-                },
-                {
-                    "@type": "Answer",
-                    "id": 34,
-                    "surveyId": 1,
-                    "questionId": 46,
-                    "entry": "I like going to movies"
-                },
-            ]
+            {
+                "previous": "/customers/1/answers?page=2",
+                "next": "/customers/1/answers?page=4",
+                "last": "/customers/1/answers?page=498",
+                "@type": "Collection",
+                "member": 
+                    [
+                        {
+                            "@type": "Answer",
+                            "id": 33,
+                            "surveyId": 1,
+                            "questionId": 43,
+                            "choices": [1,4,5]
+                        },
+                        {
+                            "@type": "Answer",
+                            "id": 34,
+                            "surveyId": 1,
+                            "questionId": 46,
+                            "entry": "I like going to movies"
+                        }
+                    ]
+            }
 
 ### Create a Answer [POST]
 
