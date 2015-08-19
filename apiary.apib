@@ -49,13 +49,18 @@ Extra Attributes for Customer Details
                 "gender":                                   "male", 
                 "birthDate":                                "03/17/1983", 
                 "storeCredit":                              41.66, 
-                "externalAccounts" : [
-                    {
-                        "@type": "ExternalAccount",
-                        "provider": "facebook",
-                        "id": "4324325242"
-                    }
-                ]
+                "externalAccounts" : 
+                     {
+                        "@type":"Collection",
+                        "member": 
+                            [
+                                {
+                                    "@type": "ExternalAccount",
+                                    "provider": "facebook",
+                                    "id": "4324325242"
+                                }
+                            ]
+                     }
             }
             
             
@@ -108,12 +113,18 @@ Extra Attributes for Customer Details
                 "lastName": "Eilers Smith", 
                 "gender": "male", 
                 "birthDate": "03/17/1983", 
-                "externalAccounts" : [
+                "externalAccounts" : 
                     {
-                        "provider": "facebook",
-                        "id": "4324325242"
-                    }
-                ]
+                        "@type":"Collection",
+                        "member": 
+                            [
+                                {
+                                    "@type": "ExternalAccount",
+                                    "provider": "facebook",
+                                    "id": "4324325242"
+                                }
+                            ]
+                     }
             }
         
         
@@ -139,6 +150,9 @@ Extra Attributes for Customer Details
 
 + Model (application/json)
 
+    + Headers
+
+            Link: </customers?page=3>; rel="next" 
             
     + Body
 
@@ -275,7 +289,7 @@ A Post object has the following attributes:
 - `type` - { none, transaction, promotion, styleAdvice, content }
 - `title`
 - `message`
-- `is_deleted` - Has the user deleted the post
+- `isDeleted` - Has the user deleted the post
 - `deepLink` - *optional*
 - `webUrl` - *optional*
 - `youtubeUrl` - *optional*
@@ -300,24 +314,31 @@ A Post object has the following attributes:
                 "type": "styleAdvice",
                 "title": "Style Watch",
                 "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
-                "images": [
+                "images": 
                     {
-                        "id": 1,
-                        "createdAt": "2014-11-11T08:40:51.620Z",
-                        "updatedAt": "2014-11-11T08:40:51.620Z",
-                        "title": "Short in the back",
-                        "comment": "I really like how there is no hair on his neck."
-                        "imageUrl": "customers/1//posts/1/images/1/short.jpg"
-                    },
-                    {
-                        "id": 2,
-                        "createdAt": "2014-11-11T08:40:51.620Z",
-                        "updatedAt": "2014-11-11T08:40:51.620Z",
-                        "title": "Fuzzy on top",
-                        "comment": "I wonder what shampoo he uses."
-                        "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
-                    }
-                ]
+                        "@type":"Collection",
+                        "member": 
+                            [
+                                {
+                                    "@type": "PostImage",
+                                    "id": 1,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "title": "Short in the back",
+                                    "comment": "I really like how there is no hair on his neck."
+                                    "imageUrl": "customers/1//posts/1/images/1/short.jpg"
+                                },
+                                {
+                                    "@type": "PostImage",
+                                    "id": 2,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "title": "Fuzzy on top",
+                                    "comment": "I wonder what shampoo he uses."
+                                    "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
+                                }
+                            ]
+                     }
             }
             
 ### View a Post's Detail [GET]
@@ -334,24 +355,31 @@ A Post object has the following attributes:
             "type": "styleAdvice",
             "title": "Style Watch",
             "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
-            "images": [
+            "images": 
                 {
-                    "id": 1,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "updatedAt": "2014-11-11T08:40:51.620Z",
-                    "title": "Short in the back",
-                    "comment": "I really like how there is no hair on his neck."
-                    "imageUrl": "customers/1//posts/1/images/1/short.jpg"
-                },
-                {
-                    "id": 2,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "updatedAt": "2014-11-11T08:40:51.620Z",
-                    "title": "Fuzzy on top",
-                    "comment": "I wonder what shampoo he uses."
-                    "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
-                }
-            ]
+                    "@type":"Collection",
+                    "member": 
+                        [
+                            {
+                                "@type": "PostImage",
+                                "id": 1,
+                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                "updatedAt": "2014-11-11T08:40:51.620Z",
+                                "title": "Short in the back",
+                                "comment": "I really like how there is no hair on his neck."
+                                "imageUrl": "customers/1//posts/1/images/1/short.jpg"
+                            },
+                            {
+                                "@type": "PostImage",
+                                "id": 2,
+                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                "updatedAt": "2014-11-11T08:40:51.620Z",
+                                "title": "Fuzzy on top",
+                                "comment": "I wonder what shampoo he uses."
+                                "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
+                            }
+                        ]
+                 }
         }
 
 ### Update a Post [PUT]
@@ -382,25 +410,32 @@ A Post object has the following attributes:
                 "type": "styleAdvice",
                 "title": "Style Watch",
                 "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
-                "images": [
+                "images": 
                     {
-                        "id": 1,
-                        "createdAt": "2014-11-11T08:40:51.620Z",
-                        "updatedAt": "2014-11-11T08:40:51.620Z",
-                        "title": "Short in the back",
-                        "comment": "I really like how there is no hair on his neck."
-                        "imageUrl": "customers/1//posts/1/images/1/short.jpg"
-                    },
-                    {
-                        "id": 2,
-                        "createdAt": "2014-11-11T08:40:51.620Z",
-                        "updatedAt": "2014-11-11T08:40:51.620Z",
-                        "title": "Fuzzy on top",
-                        "comment": "I wonder what shampoo he uses."
-                        "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
-                    },
-                    "is_deleted": 1
-                ]
+                        "@type":"Collection",
+                        "member": 
+                            [
+                                {
+                                    "@type": "PostImage",
+                                    "id": 1,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "title": "Short in the back",
+                                    "comment": "I really like how there is no hair on his neck."
+                                    "imageUrl": "customers/1//posts/1/images/1/short.jpg"
+                                },
+                                {
+                                    "@type": "PostImage",
+                                    "id": 2,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "title": "Fuzzy on top",
+                                    "comment": "I wonder what shampoo he uses."
+                                    "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
+                                }
+                            ]
+                     },
+                "isDeleted": 1
             }
         
         
@@ -412,11 +447,11 @@ A Post object has the following attributes:
 
 + Response 500 (application/json)            
             
-## Posts Collection [/customers/{cid}/posts{?page}{?is_deleted}]
+## Posts Collection [/customers/{cid}/posts{?page}{?isDeleted}]
 
 + Parameters
     + page: 1 (optional, number) - The page of surveys to return
-    + is_deleted: 0 (optional, number) - Only show posts that weren't deleted by the user
+    + isDeleted: 0 (optional, number) - Only show posts that weren't deleted by the user
 
 ### List All Posts [GET]
 
@@ -424,14 +459,14 @@ A Post object has the following attributes:
 
     + Headers
 
-            Link: </surveys?page=2>; rel="next"
+            Link: </customers/1/posts?page=2>; rel="next"
 
     + Body
 
             {
-                "previous": "/posts?page=2",
-                "next": "/posts?page=4",
-                "last": "/posts?page=498",
+                "previous": "/customers/1/posts?page=2",
+                "next": "/customers/1/posts?page=4",
+                "last": "/customers/1/posts?page=498",
                 "@type":"Collection",
                 "member": 
                     [
@@ -444,24 +479,31 @@ A Post object has the following attributes:
                             "type": "styleAdvice",
                             "title": "Style Watch",
                             "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
-                            "images": [
+                            "images": 
                                 {
-                                    "id": 1,
-                                    "createdAt": "2014-11-11T08:40:51.620Z",
-                                    "updatedAt": "2014-11-11T08:40:51.620Z",
-                                    "title": "Short in the back",
-                                    "comment": "I really like how there is no hair on his neck."
-                                    "imageUrl": "customers/1//posts/1/images/1/short.jpg"
-                                },
-                                {
-                                    "id": 2,
-                                    "createdAt": "2014-11-11T08:40:51.620Z",
-                                    "updatedAt": "2014-11-11T08:40:51.620Z",
-                                    "title": "Fuzzy on top",
-                                    "comment": "I wonder what shampoo he uses."
-                                    "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
-                                }
-                            ]
+                                    "@type":"Collection",
+                                    "member": 
+                                        [
+                                            {
+                                                "@type": "PostImage",
+                                                "id": 1,
+                                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                                "updatedAt": "2014-11-11T08:40:51.620Z",
+                                                "title": "Short in the back",
+                                                "comment": "I really like how there is no hair on his neck."
+                                                "imageUrl": "customers/1//posts/1/images/1/short.jpg"
+                                            },
+                                            {
+                                                "@type": "PostImage",
+                                                "id": 2,
+                                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                                "updatedAt": "2014-11-11T08:40:51.620Z",
+                                                "title": "Fuzzy on top",
+                                                "comment": "I wonder what shampoo he uses."
+                                                "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
+                                            }
+                                        ]
+                                 }
                         },
                         {
                             "@type": "Post",
@@ -472,22 +514,28 @@ A Post object has the following attributes:
                             "type": "promotion",
                             "title": "The July collection is now live",
                             "message": "This month's collection is inspired by Spain. Spain is a pretty awesome country",
-                            "products": [
-                                {
-                                    "id": 1,
-                                    "productId": 4323444,
-                                    "createdAt": "2014-11-11T08:40:51.620Z",
-                                    "updatedAt": "2014-11-11T08:40:51.620Z",
-                                    "comment": "What a great suit this is."
-                                },
-                                {
-                                    "id": 2,
-                                    "productId": 5435434,
-                                    "createdAt": "2014-11-11T08:40:51.620Z",
-                                    "updatedAt": "2014-11-11T08:40:51.620Z",
-                                    "comment": "I really see you in this sweater."
-                                }
-                            ]
+                            "products": 
+                                { 
+                                    "@type":"Collection",
+                                    "member": 
+                                        [
+                                            {
+                                                "@type": "PostProduct",
+                                                "id": 1,
+                                                "productId": 4323444,
+                                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                                "updatedAt": "2014-11-11T08:40:51.620Z",
+                                                "comment": "What a great suit this is."
+                                            },
+                                            {
+                                                "@type": "PostProduct",
+                                                "id": 2,
+                                                "productId": 5435434,
+                                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                                "updatedAt": "2014-11-11T08:40:51.620Z",
+                                                "comment": "I really see you in this sweater."
+                                            }
+                                        ]
                         }
                     ]
             }
@@ -541,25 +589,31 @@ object containing a post.
                 "type": "styleAdvice",
                 "title": "Style Watch",
                 "message": "This week I've been watching for haircut trends on Montreal's Plateau. Conclusion: short in the back, crazy on top.",
-                "images": 
-                    [
-                        {
-                            "id": 1,
-                            "createdAt": "2014-11-11T08:40:51.620Z",
-                            "updatedAt": "2014-11-11T08:40:51.620Z",
-                            "title": "Short in the back",
-                            "comment": "I really like how there is no hair on his neck."
-                            "imageUrl": "customers/1//posts/1/images/1/short.jpg"
-                        },
-                        {
-                            "id": 2,
-                            "createdAt": "2014-11-11T08:40:51.620Z",
-                            "updatedAt": "2014-11-11T08:40:51.620Z",
-                            "title": "Fuzzy on top",
-                            "comment": "I wonder what shampoo he uses."
-                            "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
-                        }
-                    ]
+                "images":
+                    {
+                        "@type":"Collection",
+                        "member": 
+                            [
+                                {
+                                    "@type": "PostImage",
+                                    "id": 1,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "title": "Short in the back",
+                                    "comment": "I really like how there is no hair on his neck."
+                                    "imageUrl": "customers/1//posts/1/images/1/short.jpg"
+                                },
+                                {
+                                    "@type": "PostImage",
+                                    "id": 2,
+                                    "createdAt": "2014-11-11T08:40:51.620Z",
+                                    "updatedAt": "2014-11-11T08:40:51.620Z",
+                                    "title": "Fuzzy on top",
+                                    "comment": "I wonder what shampoo he uses."
+                                    "imageUrl": "customers/1//posts/1/images/2/fuzzy.jpg"
+                                }
+                            ]
+                     }
             }
 
 
@@ -584,7 +638,7 @@ A Survey object has the following attributes:
 - `imageUrl` - *optional*
 - `genderGroup` - { none, male, female } - *optional*
 - `ageGroup` - { none, 18-25, 26-39, 40+ } - *optional*
-- `customerGroups` - List of customer groups that have exclusive access to the survey, separated by a comma. If null, the survey is public. - *optional*
+- `isDeletedups` - List of customer groups that have exclusive access to the survey, separated by a comma. If null, the survey is public. - *optional*
 - `expiresAt` - *optional*
 - `seen` - *optional*
 
@@ -617,14 +671,14 @@ A Survey object has the following attributes:
 
     + Headers
 
-            Link: </posts?page=2>; rel="next"
+            Link: </customers/1/surveys?page=2>; rel="next"
 
     + Body
 
             {
-                "previous": "/posts?page=2",
-                "next": "/posts?page=4",
-                "last": "/posts?page=498",
+                "previous": "/customers/1/surveys?page=2",
+                "next": "/customers/1/surveys?page=4",
+                "last": "/customers/1/surveys?page=498",
                 "@type": "Collection",
                 "member": 
                     [
@@ -709,30 +763,44 @@ A Question object has the following attributes:
             "type": "singleChoice",
             "createdAt": "2014-11-11T08:40:51.620Z",
             "imageUrl": "/questions/1.jpg",
-            "choices": [
+            "choices": 
                 {
-                    "id": 1,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "title": "XS",
-                    "votes": 2048
-                }, {
-                    "id": 2,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "title": "S",
-                    "votes": 1024
-                }, {
-                    "id": 3,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "title": "M",
-                    "votes": 512
-                }, {
-                    "id": 4,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "title": "L",
-                    "votes": 256
+                    "@type": "Collection",
+                    "member": 
+                        [
+                            {
+                                "@type": "Choice",
+                                "id": 1,
+                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                "title": "XS",
+                                "votes": 2048
+                            }, 
+                            {
+                                "@type": "Choice",
+                                "id": 2,
+                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                "title": "S",
+                                "votes": 1024
+                            }, 
+                            {
+                                "@type": "Choice",
+                                "id": 3,
+                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                "title": "M",
+                                "votes": 512
+                            }, 
+                            {   
+                                "@type": "Choice",
+                                "id": 4,
+                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                "title": "L",
+                                "votes": 256
+                            }
+                        ]
                 }
-            ],
+            ,
             "answer": {
+                "@type": "Answer",
                 "id": 1,
                 "createdAt": "2014-11-11T08:40:51.620Z",
                 "choices": [ 1 ]
@@ -755,48 +823,69 @@ A Question object has the following attributes:
 
     + Headers
 
-            Link: </questions?page=2>; rel="next"
+            Link: </customers/1/surveys/1/questions?page=2>; rel="next"
 
     + Body
 
-            [
-                {
-                    "@type": "Question",
-                    "id": 1,
-                    "title": "What is your shirt size?",
-                    "type": "singleChoice",
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "imageUrl": "/questions/1.jpg",
-                    "choices": [
+            {
+                "previous": "/customers/1/surveys/1/questions?page=2",
+                "next": "/customers/1/surveys/1/questions?page=4",
+                "last": "/customers/1/surveys/1/questions?page=498",
+                "@type": "Collection",
+                "member": 
+                    [
+                        {
+                            "@type": "Question",
+                            "id": 1,
+                            "title": "What is your shirt size?",
+                            "type": "singleChoice",
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "imageUrl": "/questions/1.jpg",
+                            "choices": 
                                 {
-                                    "id": 1,
-                                    "createdAt": "2014-11-11T08:40:51.620Z",
-                                    "title": "XS",
-                                    "votes": 2048
-                                }, {
-                                    "id": 2,
-                                    "createdAt": "2014-11-11T08:40:51.620Z",
-                                    "title": "S",
-                                    "votes": 1024
-                                }, {
-                                    "id": 3,
-                                    "createdAt": "2014-11-11T08:40:51.620Z",
-                                    "title": "M",
-                                    "votes": 512
-                                }, {
-                                    "id": 4,
-                                    "createdAt": "2014-11-11T08:40:51.620Z",
-                                    "title": "L",
-                                    "votes": 256
-                                }
-                            ],
-                    "answer": {
-                        "id": 1,
-                        "createdAt": "2014-11-11T08:40:51.620Z",
-                        "choices": [ 1 ]
-                    }
-                }
-            ]
+                                    "@type": "Collection",
+                                    "member": 
+                                        [
+                                            {
+                                                "@type": "Choice",
+                                                "id": 1,
+                                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                                "title": "XS",
+                                                "votes": 2048
+                                            }, 
+                                            {
+                                                "@type": "Choice",
+                                                "id": 2,
+                                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                                "title": "S",
+                                                "votes": 1024
+                                            }, 
+                                            {
+                                                "@type": "Choice",
+                                                "id": 3,
+                                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                                "title": "M",
+                                                "votes": 512
+                                            }, 
+                                            {   
+                                                "@type": "Choice",
+                                                "id": 4,
+                                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                                "title": "L",
+                                                "votes": 256
+                                            }
+                                        ]
+                                },
+                            "answer": {
+                                "@type": "Answer",
+                                "id": 1,
+                                "createdAt": "2014-11-11T08:40:51.620Z",
+                                "choices": [ 1 ]
+                            }
+                        }
+                    ]
+            }
+               
 
 ### Create a Question [POST]
 
@@ -806,7 +895,6 @@ form of choices.
 
 + title (string) - The question title
 + type (integer) - The question type (single choice, multiple, field)
-+ choices (array[Choice]) - A collection of choices.
 
 + Request (application/json)
 
@@ -824,25 +912,16 @@ form of choices.
 
     + Headers
 
-            Location: /sites/1/customers/432432/surveys/1/questions/2
+            Location: /customers/1/surveys/1/questions/2
 
     + Body
 
             {
+                "@type": "Question",
+                "id": 32,
                 "question": "What is your pant fit?",
                 "type": "singleChoice",
-                "createdAt": "2014-11-11T08:40:51.620Z",
-                "choices": [
-                    {
-                        "title": "XS"
-                    }, {
-                        "title": "S"
-                    }, {
-                        "title": "M"
-                    }, {
-                        "title": "L"
-                    }
-                ]
+                "createdAt": "2014-11-11T08:40:51.620Z"
             }
 
 ## Choice [/customers/{cid}/surveys/{sid}/questions/{qid}/choices/{choiceId}]
@@ -894,26 +973,33 @@ A Choice object has the following attributes:
 
     + Headers
 
-            Link: </questions?page=2>; rel="next"
+            Link: </customers/1/questions/1/choices?page=2>; rel="next"
 
     + Body
 
-            [
-                {
-                    "@type": "Choice",
-                    "id": 1,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "title": "XS",
-                    "votes": 2048
-                },
-                {
-                    "@type": "Choice",
-                    "id": 2,
-                    "createdAt": "2014-11-11T08:40:51.620Z",
-                    "title": "S",
-                    "votes": 2048
-                }
-            ]
+            {
+                "previous": "/customers/1/surveys/1/questions/1/choices?page=2",
+                "next": "/customers/1/surveys/1/questions/1/choices?page=4",
+                "last": "/customers/1/surveys/1/questions/1/choices?page=498",
+                "@type": "Collection",
+                "member": 
+                    [
+                        {
+                            "@type": "Choice",
+                            "id": 1,
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "title": "XS",
+                            "votes": 2048
+                        },
+                        {
+                            "@type": "Choice",
+                            "id": 2,
+                            "createdAt": "2014-11-11T08:40:51.620Z",
+                            "title": "S",
+                            "votes": 2048
+                        }
+                    ]
+            }
 
 ### Create a Choice [POST]
 
